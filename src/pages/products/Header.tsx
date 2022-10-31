@@ -12,16 +12,20 @@ const dropDownList = [
 	{ name: "Latest Promotions", dropDown: true },
 	{ name: "Crayon Shinchan 15% off", dropDown: false },
 	{ name: "Best Sellers", dropDown: false },
+	{ name: "Our Videos", dropDown: false },
+	{ name: "Crayon Shinchan 15% off", dropDown: false },
+	{ name: "Best Sellers", dropDown: false },
+	{ name: "Our Videos", dropDown: false },
 ];
 
 export default function Header() {
 	return (
 		<div className="w-[100%] h-[auto] min-h-[100px] bg-[#c89185]">
-			<div className="flex justify-between items-center w-[1180px] h-[100px] m-[auto]">
-				<div className="w-[216px] h-[65px] bg-white mr-[2%]">
+			<div className="flex justify-between items-start  w-[1180px] h-[auto] m-[auto]">
+				<div className="w-[216px] h-[65px] bg-white mr-[2%] mt-[17.5px]">
 					<img src={logo} className="m-[auto]"></img>
 				</div>
-				<div className="flex w-[auto] max-w-[685px] grow space-x-5">
+				<div className="flex flex-wrap w-[100%] h-[auto] max-w-[685px] text-[14px] grow mt-[67px]">
 					{dropDownList.map((item) => (
 						<HeaderDropDown
 							key={item.name}
@@ -72,7 +76,7 @@ interface HeaderDropDownProps {
 
 function HeaderDropDown({ text, dropDown }: HeaderDropDownProps) {
 	return (
-		<div className="flex w-[auto] h-[auto] min-h-[100px] items-end mb-[17.5px]">
+		<div className="flex w-[auto] h-[auto] items-end mr-5 mb-[17.5px]">
 			<p className="mr-1">{text}</p>
 			<button className="flex items-center cursor-pointer">
 				<img src={chevron_s} className={`${dropDown ? "block" : "hidden"}`} />
