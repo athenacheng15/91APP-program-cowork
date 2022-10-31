@@ -17,6 +17,11 @@ export const ResetStyle = createGlobalStyle`
 }
 
 /* Preferred box-sizing value */
+
+:root {
+  font-size: 62.5%;
+}
+
 *,
 *::before,
 *::after {
@@ -92,6 +97,8 @@ meter {
 	-webkit-user-drag: element;
 
 }`;
+
+
 
 export const GlobalFonts = createGlobalStyle`
 html {
