@@ -15,6 +15,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 	const[validateCount,setValidateCount]=useState<number>(0);
 
 	useEffect(()=>setRegInfo(proPostInfo),[validateCount]);
+	useEffect(()=>console.log(proPostInfo),[validateCount]);
 	
 	useEffect(()=>{
 		//點擊選擇商品時會增加validateCount從而啟動這個useEffect
@@ -24,6 +25,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		if(validateCount>0 && validateCount%2===0){
 			let nameValidation=false;
 			let phoneValidation=false;
+			let emailValidation=false;
 			//name
 			if(isChinese(regInfo.name) && regInfo.name.length<8 && regInfo.name.length!==0 && regInfo.name!=="WRONG"){
 				nameValidation=true;	
@@ -36,6 +38,15 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			}else{
 				regInfo.phone!=="WRONG" && setRegInfo({...regInfo,phone:"WRONG"});
 			}
+
+			//email
+			const re = /\S+@\S+\.\S+/;
+			if(re.test(regInfo.email) || regInfo.email.length!==0){
+				emailValidation=true;
+			}else{
+				regInfo.email!=="WRONG" && setRegInfo({...regInfo,email:"WRONG"});
+			}
+
 		}},[regInfo]);
 
 		

@@ -47,8 +47,8 @@ function InputForm() {
 				onChange={(e)=>{
 					setProPostInfo({...proPostInfo,email:e.target.value});
 				}}
-				placeholder="輸入 Email" className="p-[10px] w-[90%] self-center rounded-md h-[40px] border-solid border-[1px] border-[#dddddd]"></input>
-			<ValidationWarning text={"Email 格式錯誤，請重新輸入"} />
+				placeholder="輸入 Email" className={`${regInfo.email==="WRONG" ? "border-[#fe494e]" :"border-[#dddddd]"} p-[10px] w-[90%] self-center rounded-md h-[40px] border-solid border-[1px]`}></input>
+			{regInfo.email==="WRONG"&&(<ValidationWarning text={"Email 格式錯誤，請重新輸入"} />)}
 			<div className="flex mt-[20px] w-[90%] self-center items-center">
 				<input 
 					onChange={(e)=>{
