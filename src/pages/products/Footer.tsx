@@ -39,7 +39,10 @@ export default function Footer() {
 								<div key={group.title} className="w-[100px] space-y-2">
 									<p className="text-[16px]">{group.title}</p>
 									{group.links.map((link) => (
-										<a key={link} className="h-5 text-xs block ">
+										<a
+											key={link}
+											className="h-5 text-xs block cursor-pointer hover:underline"
+										>
 											{link}
 										</a>
 									))}
@@ -57,8 +60,8 @@ export default function Footer() {
 								免費傳送載點至手機
 							</button>
 							<div className="flex justify-between">
-								<img src={ios} />
-								<img src={google} />
+								<img src={ios} className="cursor-pointer" />
+								<img src={google} className="cursor-pointer" />
 							</div>
 						</div>
 					</div>
