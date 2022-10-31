@@ -1,13 +1,13 @@
-import side1 from "../img/products/side-01.png";
-import side2 from "../img/products/side-02.png";
-import side3 from "../img/products/side-03.png";
-import side4 from "../img/products/side-04.png";
-import g101 from "../img/products/g1-01.png";
-import g102 from "../img/products/g1-02.png";
-import g103 from "../img/products/g1-03.png";
-import g104 from "../img/products/g1-04.png";
-import g105 from "../img/products/g1-05.png";
-import g106 from "../img/products/g1-06.png";
+import side1 from "../img/products/goods/side-01.png";
+import side2 from "../img/products/goods/side-02.png";
+import side3 from "../img/products/goods/side-03.png";
+import side4 from "../img/products/goods/side-04.png";
+import g101 from "../img/products/goods/g1-01.png";
+import g102 from "../img/products/goods/g1-02.png";
+import g103 from "../img/products/goods/g1-03.png";
+import g104 from "../img/products/goods/g1-04.png";
+import g105 from "../img/products/goods/g1-05.png";
+import g106 from "../img/products/goods/g1-06.png";
 
 export const group1List = [
 	{ id: 1, imgUrl: g101 },
@@ -67,7 +67,7 @@ export const sideBarList = [
 	},
 	{
 		title: "本月主題推薦",
-		items: ["【呪術迴戰限量聯名系列】", "【日系長襪任選三雙500】"],
+		items: ["【文青分格紋穿搭】", "【韓系大地色精選】"],
 	},
 	{
 		title: "流行女鞋",
@@ -100,15 +100,15 @@ export const sideBarList = [
 	{
 		title: "獨家聯名",
 		items: [
-			"【呪術迴戰限量感謝祭特賣】",
-			"【蠟筆小新30週年限量商品】",
-			"【電馭叛客露西我老婆限量上衣】",
+			"【呪術迴戰感謝祭特賣】",
+			"【蠟筆小新30週年商品】",
+			"【電馭叛客限量上衣】",
 		],
 	},
 	{
 		title: "貼心鞋材",
 		items: [
-			"【高跟鞋專用透明矽膠按摩墊】",
+			"【高跟鞋專用透明矽膠墊】",
 			"【柔軟矽膠指尖保護半墊】",
 			"【白鞋救星增白鞋液】",
 		],
