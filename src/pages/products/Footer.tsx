@@ -22,7 +22,7 @@ const footerLink = [
 
 export default function Footer() {
 	return (
-		<div className="w-[100%] h-[260px] border-t mt-[89px] pt-10 pb-6">
+		<div className="w-[100%] h-[260px] border-t mt-[19px] pt-10 pb-6">
 			<div className="m-[auto] w-[1180px] h-[100%]">
 				<div className="flex justify-between ">
 					<div>
@@ -53,7 +53,7 @@ export default function Footer() {
 							<p className="text-[16px]">官方APP</p>
 							<input
 								type="text"
-								className="w-[100%] h-10 pl-3 border-[#bbbbbb] border-solid rounded-[4px] text-[14px] placeholder:font-light placeholder:text-[#bbbbbb]"
+								className="w-[100%] h-10 pl-3 border border-[#ccc] border-solid rounded-[4px] text-[14px] placeholder:font-light placeholder:text-[#bbbbbb]"
 								placeholder="請輸入台灣手機號碼"
 							/>
 							<button className="w-[100%] h-10 pr-7 bg-[#333] rounded-[4px] text-[14px] text-[#fff] font-thin cursor-pointer">

@@ -8,6 +8,8 @@ import g103 from "../img/products/goods/g1-03.png";
 import g104 from "../img/products/goods/g1-04.png";
 import g105 from "../img/products/goods/g1-05.png";
 import g106 from "../img/products/goods/g1-06.png";
+import g201 from "../img/products/goods/g2-01.png";
+import g202 from "../img/products/goods/g2-02.png";
 
 export const group1List = [
 	{ id: 1, imgUrl: g101 },
@@ -17,7 +19,14 @@ export const group1List = [
 	{ id: 5, imgUrl: g105 },
 	{ id: 6, imgUrl: g106 },
 ];
-export const group2List = [{ id: "", imgUrl: "" }];
+export const group2List = [
+	{ id: 1, imgUrl: g201 },
+	{ id: 2, imgUrl: g103 },
+	{ id: 3, imgUrl: g106 },
+	{ id: 4, imgUrl: g101 },
+	{ id: 5, imgUrl: g202 },
+	{ id: 6, imgUrl: g104 },
+];
 export const sideList = [
 	{
 		id: 1,
