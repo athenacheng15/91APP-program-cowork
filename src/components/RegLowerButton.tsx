@@ -28,41 +28,47 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		//需要重複的code的原因是每一個選項都需要獨特的判定，之後可以想想如何改善
 		//而且會有按了選擇商品之後一直呼叫的問題
 		if(validateCount>0 && validateCount%2===0){
-			let nameValidation=false;
-			let phoneValidation=false;
-			let emailValidation=false;
-			let checkBoxValidation=false;
-			//name
-			if(isChinese(regInfo.name) && regInfo.name.length<8 && regInfo.name.length!==0 && regInfo.name!=="WRONG"){
-				nameValidation=true;	
-			}else{
-				regInfo.name!=="WRONG" && setRegInfo({...regInfo,name:"WRONG"});
-			}
-			//phone
-			if(regInfo.phone.match(/^[0-9]+$/)!==null && regInfo.phone!=="WRONG" && regInfo.phone.length===10){
-				phoneValidation=true;
-			}else{
-				regInfo.phone!=="WRONG" && setRegInfo({...regInfo,phone:"WRONG"});
-			}
+			if(buttonText==="選擇商品"){
+				let nameValidation=false;
+				let phoneValidation=false;
+				let emailValidation=false;
+				let checkBoxValidation=false;
+				//name
+				if(isChinese(regInfo.name) && regInfo.name.length<8 && regInfo.name.length!==0 && regInfo.name!=="WRONG"){
+					nameValidation=true;	
+				}else{
+					regInfo.name!=="WRONG" && setRegInfo({...regInfo,name:"WRONG"});
+				}
+				//phone
+				if(regInfo.phone.match(/^[0-9]+$/)!==null && regInfo.phone!=="WRONG" && regInfo.phone.length===10){
+					phoneValidation=true;
+				}else{
+					regInfo.phone!=="WRONG" && setRegInfo({...regInfo,phone:"WRONG"});
+				}
 
-			//email
-			const re = /\S+@\S+\.\S+/;
-			if(re.test(regInfo.email) || regInfo.email.length!==0){
-				emailValidation=true;
-			}else{
-				regInfo.email!=="WRONG" && setRegInfo({...regInfo,email:"WRONG"});
-			}
+				//email
+				const re = /\S+@\S+\.\S+/;
+				if(re.test(regInfo.email) || regInfo.email.length!==0){
+					emailValidation=true;
+				}else{
+					regInfo.email!=="WRONG" && setRegInfo({...regInfo,email:"WRONG"});
+				}
 
-			//checkbox
-			if(regInfo.checked){
-				checkBoxValidation=true;
-			}
+				//checkbox
+				if(regInfo.checked){
+					checkBoxValidation=true;
+				}
 
-			//all validation pass, start navigate
-			if(nameValidation && phoneValidation && emailValidation && checkBoxValidation){
-				navigate(navLink);
-				window.scroll({top: 0, left: 0, behavior: "smooth" }); 
+				//all validation pass, start navigate
+				if(nameValidation && phoneValidation && emailValidation && checkBoxValidation){
+					navigate(navLink);
+					window.scroll({top: 0, left: 0, behavior: "smooth" }); 
+				}
 			}
+			// if(buttonText==="送出"){
+
+			// }
+			
 		}},[regInfo]);
 
 		
@@ -74,15 +80,15 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 	return ( 
 		<section 
 			onClick={()=>{
-				if(buttonText!=="選擇商品"){
+				if(buttonText!=="選擇商品" && buttonText!=="送出"){
 					navigate(navLink);
 					window.scroll({top: 0, left: 0, behavior: "smooth" }); 
 				}else{
 					setValidateCount(validateCount+2);
 				}
 			}}
-			className="cursor-pointer bg-white h-[68px] flex w-[100%] items-center justify-center">
-			<div className="w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center">
+			className=" bg-white h-[max-content] flex w-[100%] items-center justify-center">
+			<div className="cursor-pointer my-[20px] w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center">
 				<span className="text-white text-[15px]">{buttonText}</span>
 			</div>
 		</section> );

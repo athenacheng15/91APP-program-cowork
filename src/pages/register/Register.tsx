@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import RegLowerButton from "../../components/RegLowerButton";
 import logo from "../../img/register/91Logo.png";
 import { useLocation } from "react-router-dom";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import {UserContext} from "../../utili/useContext";
 
 export default function Register() {
@@ -29,7 +29,6 @@ export default function Register() {
 		case "/register/selection":{
 			setButtonText("送出");
 			setNavLink("/register/success");
-
 			break;
 		}
 		case "/register/success":{
@@ -54,7 +53,10 @@ export default function Register() {
 		name:"",
 		phone:"",
 		email:"",
-		checked:null
+		checked:null,
+		type:"",
+		color:"",
+		size:""
 	});
 	
 

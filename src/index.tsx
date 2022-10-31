@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Product from "./pages/products/Products";
 import Register from "./pages/register/Register";
 import Reg from "./pages/register/Reg/Reg";
-import Selection from "./pages/register/Selection";
+import Selection from "./pages/register/Selection/Selection";
 import Success from "./pages/register/Success";
 import LandingWrapper from "./pages/register/Landing/LandingWrapper";
 
