@@ -46,7 +46,7 @@ export default function Register() {
 		name:"",
 		phone:"",
 		email:"",
-		checked:false
+		checked:null
 	});
 
 	const [proPostInfo, setProPostInfo] = useState({
@@ -54,7 +54,7 @@ export default function Register() {
 		name:"",
 		phone:"",
 		email:"",
-		checked:false
+		checked:null
 	});
 	
 

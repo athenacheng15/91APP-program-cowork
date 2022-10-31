@@ -6,8 +6,7 @@ import {UserContext} from "../../../utili/useContext";
 
 function InputForm() {
 
-	const { regInfo, setRegInfo, proPostInfo, setProPostInfo } = useContext(UserContext);
-	useEffect(()=>console.log(proPostInfo),[proPostInfo]);
+	const { regInfo, proPostInfo, setProPostInfo } = useContext(UserContext);
 	
 
 	return ( <section className="w-[100%] bg-white h-[max-content] flex flex-col">
@@ -57,7 +56,9 @@ function InputForm() {
 					type="checkbox" className="h-[16px] w-[16px] mr-[5px]"></input>
 				<div className="text-[14px]">我已經閱讀並同意<a href="" className="text-[13px] text-[#3d81bf] hover:underline">隱私權及網站使用條款 </a></div>
 			</div>
-			<ValidationWarning text={"請確認同意隱私權及網站使用條款"} />
+			{regInfo.checked===false && (
+				<ValidationWarning text={"請確認同意隱私權及網站使用條款"} />
+			)}
 			<div className="mt-[15px] mb-[15px] w-[100%] h-[1px] bg-[#e9e9e9]"></div>
 		</div>
 	</section> );
