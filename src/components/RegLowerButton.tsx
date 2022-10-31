@@ -11,9 +11,10 @@ type RegLowerProps={
 
 function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 	const navigate = useNavigate();
-	const { regInfo, setRegInfo } = useContext(UserContext);
+	const { regInfo, setRegInfo,proPostInfo, setProPostInfo } = useContext(UserContext);
 	const[validateCount,setValidateCount]=useState<number>(0);
 
+	useEffect(()=>setRegInfo(proPostInfo),[validateCount]);
 	
 	useEffect(()=>{
 		//點擊選擇商品時會增加validateCount從而啟動這個useEffect
@@ -35,7 +36,9 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			}else{
 				regInfo.phone!=="WRONG" && setRegInfo({...regInfo,phone:"WRONG"});
 			}
-		}},[validateCount,regInfo]);
+		}},[regInfo]);
+
+		
 
 	if(buttonText.length===0){
 		return<></>;

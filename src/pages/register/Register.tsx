@@ -11,9 +11,9 @@ export default function Register() {
 	const[navLink,setNavLink]=useState<string>("/");
 	// const [cartItems, dispatch] = useReducer(reducer,[]);
 
-	function reducer(){
-		return;
-	}
+	// function reducer(){
+	// 	return;
+	// }
 	useEffect(()=>{
 		switch(location.pathname){
 		case "/register":{
@@ -48,17 +48,24 @@ export default function Register() {
 		email:"",
 		checked:false
 	});
+
+	const [proPostInfo, setProPostInfo] = useState({
+		//避免lower button的useEffect在onchange的時候被觸發
+		name:"",
+		phone:"",
+		email:"",
+		checked:false
+	});
 	
 
 
 	return (
-		<UserContext.Provider value={{ regInfo, setRegInfo }}>
+		<UserContext.Provider value={{ regInfo, setRegInfo,proPostInfo,setProPostInfo }}>
 			<section className="w-[100%]">
 				<div className="h-[57px] bg-[#ff5455] flex items-center">
 					<img src={logo} alt="" className="w-[75px] h-[21px] ml-[20px] cursor-pointer"></img>
 				</div>
 				<Outlet />
-				{/* changeable component under outlet */}
 				<RegLowerButton buttonText={buttonText} navLink={navLink}/>
 			</section>
 		</UserContext.Provider>

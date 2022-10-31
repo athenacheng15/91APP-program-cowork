@@ -9,7 +9,6 @@ import Register from "./pages/register/Register";
 import Reg from "./pages/register/Reg/Reg";
 import Selection from "./pages/register/Selection";
 import Success from "./pages/register/Success";
-import Test from "./pages/Test";
 import LandingWrapper from "./pages/register/Landing/LandingWrapper";
 
 const root = ReactDOM.createRoot(
@@ -21,7 +20,6 @@ root.render(
 			<Route path="/" element={<App />}>
 				<Route index element={<Home />} />
 				<Route path="products" element={<Product />} />
-				<Route path="test" element={<Test />} />
 				<Route path="register" element={<Register />}>
 					<Route index element={<LandingWrapper />} />
 					{/* default page when path is /register */}
