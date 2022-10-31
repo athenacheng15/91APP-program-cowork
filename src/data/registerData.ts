@@ -1,2 +1,2 @@
-const registerData = [{ id: "", name: "", imgUrl: "", colorCode: "" }];
-export {};
+export const registerData = [{ id: "", name: "", imgUrl: "", colorCode: "" }];
+
