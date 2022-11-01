@@ -47,6 +47,7 @@ export const sideList = [
 		imgUrl: side1,
 		originalPrice: 5,
 		price: 200,
+		mark: "即將開賣",
 	},
 	{
 		id: 2,
@@ -55,6 +56,7 @@ export const sideList = [
 		imgUrl: side2,
 		originalPrice: 20,
 		price: 450,
+		mark: "已售完",
 	},
 	{
 		id: 3,
