@@ -1,12 +1,8 @@
 import EachSelector from "./EachSelector";
-import {iPhoneColorList,registerData} from "../../../data/registerData";
+import {iPhoneColorList, typeList, sizeList} from "../../../data/registerData";
 
 function Selector() {
-	const typeList=[{name:"iPhone 13"},{name:"iPhone 13 Pro"}];
-	const sizeList=[{name:"64GB"},{name:"128GB"},{name:"256GB"}];
-	// console.log(registerData.filter((item:any)=>(item.type==="iPhone 13")));
 	
-
 	return ( <section className="w-[90%] self-center">
 		<div className="mb-[15px] text-[14px]">選擇型號</div>
 		<div className="flex">

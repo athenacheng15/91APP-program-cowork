@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Gallery from "./Gallery";
 import Selector from "./Selector";
 import TitlePrice from "./TitlePrice";
-import {registerData} from "../../../data/registerData";
+import {registerData,priceChart} from "../../../data/registerData";
 import defaultPhoto from"../../../img/register/iPhone-images/pro-iphone-13-sky.png";
 import PopUp from "../../../components/PopUp";
 
@@ -15,6 +15,8 @@ export default function Selection() {
 	const[navBack,setNavBack]=useState<boolean>(false);
 	const [title,setTitle]=useState<string>("Apple iPhone 13");
 	const [price,setPrice]=useState<string>("");
+
+
 
 	useEffect(()=>{
 		//處理Gallery顯示的照片
@@ -33,12 +35,18 @@ export default function Selection() {
 	},[regInfo]);
 
 	useEffect(()=>{
-		//如果未填寫基本資料即以url進入本頁，顯示彈窗並引導回上一頁
+		//如果未填寫基本資料即以輸入url進入本頁，顯示彈窗並引導回上一頁
 		if(regInfo.name.length===0 || regInfo.phone.length===0 || regInfo.email.length===0){
-			console.log("wrong");
 			setNavBack(true);
 		}
 	},[]);
+
+	useEffect(()=>{
+		//處理價錢
+		if(regInfo.color.length!==0 && regInfo.size.length!==0){
+			console.log(priceChart.filter((item:any)=>item.type===regInfo.type && item.size === regInfo.size)[0].price);
+		}
+	},[regInfo]);
 
 	function navigateBack(){
 		navigate("/register/reg");
