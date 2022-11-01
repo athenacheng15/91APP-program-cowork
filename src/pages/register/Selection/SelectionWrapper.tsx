@@ -4,7 +4,7 @@ import Gallery from "./Gallery";
 import Selector from "./Selector";
 import TitlePrice from "./TitlePrice";
 import {registerData} from "../../../data/registerData";
-import defaultPhoto from"../../../img/register/iPhone-images/iphone-13-pro-max-blue-select.png";
+import defaultPhoto from"../../../img/register/iPhone-images/pro-iphone-13-sky.png";
 
 export default function Selection() {
 

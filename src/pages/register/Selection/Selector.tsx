@@ -4,7 +4,7 @@ import {iPhoneColorList,registerData} from "../../../data/registerData";
 function Selector() {
 	const typeList=[{name:"iPhone 13"},{name:"iPhone 13 Pro"}];
 	const sizeList=[{name:"64GB"},{name:"128GB"},{name:"256GB"}];
-	console.log(registerData.filter((item:any)=>(item.type==="iPhone 13")));
+	// console.log(registerData.filter((item:any)=>(item.type==="iPhone 13")));
 	
 
 	return ( <section className="w-[90%] self-center">
