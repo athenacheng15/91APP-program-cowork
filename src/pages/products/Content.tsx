@@ -1,14 +1,34 @@
 import { group1List, group2List, sideList } from "../../data/productsData";
 import like from "../../img/products/elements/icon08-like.png";
 import cart from "../../img/products/elements/icon07-cart.png";
+import chevronLeft from "../../img/products/elements/chevron-left.png";
+import chevronRight from "../../img/products/elements/chevron-right.png";
+
+import Carousell from "../carousell/Carousell";
+import { productsListForCarousell } from "../../data/productsData";
+
+function ArrowBtn() {
+	return (
+		<button>
+			<img src={chevronLeft} />
+		</button>
+	);
+}
 
 export default function Content() {
 	return (
 		<>
 			<div className="flex">
 				<div className="w-[100%] h-[790px]">
-					<div className="h-[100%] w-[528px] mr-[17px] bg-slate-600"></div>
-					<div></div>
+					<div className="h-[100%] w-[528px] mr-[17px] ">
+						<Carousell
+							imageList={productsListForCarousell}
+							arrowBtn={<ArrowBtn />}
+							autoPlay={true}
+							autoPlayTime={2000}
+							hight={"h-[703px]"}
+						/>
+					</div>
 				</div>
 				<div className="w-[100%]">
 					<div className="mb-[30px]">

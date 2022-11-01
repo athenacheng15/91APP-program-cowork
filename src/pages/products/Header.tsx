@@ -13,9 +13,6 @@ const dropDownList = [
 	{ name: "Crayon Shinchan 15% off", dropDown: false },
 	{ name: "Best Sellers", dropDown: false },
 	{ name: "Our Videos", dropDown: false },
-	{ name: "Crayon Shinchan 15% off", dropDown: false },
-	{ name: "Best Sellers", dropDown: false },
-	{ name: "Our Videos", dropDown: false },
 ];
 
 export default function Header() {

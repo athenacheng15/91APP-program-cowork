@@ -10,6 +10,18 @@ import g105 from "../img/products/goods/g1-05.png";
 import g106 from "../img/products/goods/g1-06.png";
 import g201 from "../img/products/goods/g2-01.png";
 import g202 from "../img/products/goods/g2-02.png";
+import c01 from "../img/products/goods/c-01.png";
+import c02 from "../img/products/goods/c-02.png";
+import c03 from "../img/products/goods/c-03.png";
+import c04 from "../img/products/goods/c-04.png";
+
+export const productsListForCarousell = [
+	{ id: 0, img: c04 },
+	{ id: 1, img: g106 },
+	{ id: 2, img: c01 },
+	{ id: 3, img: c02 },
+	{ id: 4, img: c03 },
+];
 
 export const group1List = [
 	{ id: 1, imgUrl: g101 },
@@ -127,4 +139,3 @@ export const sideBarList = [
 		items: ["【深色款】"],
 	},
 ];
-
