@@ -7,9 +7,9 @@ import Home from "./pages/Home";
 import Product from "./pages/products/Products";
 import Register from "./pages/register/Register";
 import Reg from "./pages/register/Reg/Reg";
-import Selection from "./pages/register/Selection/Selection";
 import Success from "./pages/register/Success";
 import LandingWrapper from "./pages/register/Landing/LandingWrapper";
+import SelectionWrapper from "./pages/register/Selection/SelectionWrapper";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -24,7 +24,7 @@ root.render(
 					<Route index element={<LandingWrapper />} />
 					{/* default page when path is /register */}
 					<Route path="reg" element={<Reg />} />
-					<Route path="selection" element={<Selection />} />
+					<Route path="selection" element={<SelectionWrapper />} />
 					<Route path="success" element={<Success />} />
 				</Route>
 				<Route path="*" element={<Navigate to="/" replace />} />

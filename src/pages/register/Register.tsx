@@ -45,7 +45,10 @@ export default function Register() {
 		name:"",
 		phone:"",
 		email:"",
-		checked:null
+		checked:null,
+		type:"",
+		color:"",
+		size:""	
 	});
 
 	const [proPostInfo, setProPostInfo] = useState({

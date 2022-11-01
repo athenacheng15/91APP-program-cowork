@@ -10,12 +10,14 @@ export default function Selection() {
 
 	const { regInfo, setRegInfo } = useContext(UserContext);
 	const[image,setImage]=useState<string>(defaultPhoto);
-	const[price,setPrice]=useState<string>("");
 	useEffect(()=>{
 		//處理Gallery顯示的照片
-		if(regInfo.type==="iPhone 13"){
+		if(regInfo.type.length!==0){
 			if(regInfo.size.length===0 && regInfo.color.length===0){
-				setImage(registerData.filter((item)=>(item.name==="iPhone 13 catalog"))[0].imgUrl);
+				setImage(registerData.filter((item)=>(item.name===regInfo.type))[0].imgUrl);
+			}
+			else{
+				setImage(registerData.filter((item)=>(item.name===`${regInfo.type} ${regInfo.color}`))[0].imgUrl);
 			}
 		}
 	},[regInfo]);
