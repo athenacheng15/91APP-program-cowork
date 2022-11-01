@@ -65,11 +65,13 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 					window.scroll({top: 0, left: 0, behavior: "smooth" }); 
 				}
 			}
-			// if(buttonText==="送出"){
-
-			// }
 			
 		}},[regInfo]);
+
+	function postChecker(){
+		//檢查是否所有項目已經填寫再送出
+		
+	}
 
 		
 
@@ -85,6 +87,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 					window.scroll({top: 0, left: 0, behavior: "smooth" }); 
 				}else{
 					setValidateCount(validateCount+2);
+					buttonText==="送出"&&postChecker();
 				}
 			}}
 			className=" bg-white h-[max-content] flex w-[100%] items-center justify-center">
