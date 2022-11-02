@@ -42,31 +42,31 @@ export default function Selection() {
 		}
 	},[]);
 
+	function priceProcessor(){
+		const localPrice=priceChart.filter((item:any)=>item.type===regInfo.type && item.size === regInfo.size)[0].price;
+		setPrice(localPrice);
+		setRegInfo({...regInfo,price:localPrice});
+		setSize(regInfo.size);
+	}
+
+
 	useEffect(()=>{
 		//處理價錢
-		console.log(regInfo.price,"regInfo price");
-		console.log(price,"local price");
-		console.log(regInfo.price!==price,"compare");
-		console.log(regInfo);
-		// console.log(size,"local size");
-		// console.log(regInfo.size,"regInfo size");
-		// console.log(size!==regInfo.size,"compare");
-		// && (regInfo.price!==price || regInfo.price==="")
 
-		if(regInfo.color.length!==0 && regInfo.size.length!==0 ){
-			console.log("run upper");
-			const localPrice=priceChart.filter((item:any)=>item.type===regInfo.type && item.size === regInfo.size)[0].price;
-			setPrice(localPrice);
-			setRegInfo({...regInfo,price:localPrice});
-			setSize(regInfo.size);
+		if(regInfo.color.length!==0 && regInfo.size.length!==0 && price===""){
+			priceProcessor();
 		}
+
+		if(regInfo.size.length!==0 && regInfo.size!==size){
+			priceProcessor();
+		}
+
 		if(regInfo.color.length===0 && regInfo.size.length===0){
-			console.log("run down here");
-			
 			setPrice("");
 		}
 
 	},[regInfo]);
+
 
 
 	function navigateBack(){
