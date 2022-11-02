@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../utili/useContext";
 import {isChinese} from "../utili/isChinese";
+import PopUp from "./PopUp";
 
 type RegLowerProps={
 	buttonText:string;
@@ -13,6 +14,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 	const navigate = useNavigate();
 	const { regInfo, setRegInfo,proPostInfo, setProPostInfo } = useContext(UserContext);
 	const[validateCount,setValidateCount]=useState<number>(0);
+	const[showPopUp,setShowPopUp]=useState<boolean>(false);
 
 	useEffect(()=>{if(proPostInfo.checked===null){
 		setProPostInfo({...proPostInfo,checked:false});
@@ -69,10 +71,22 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		}},[regInfo]);
 
 	function postChecker(){
-		//檢查是否所有項目已經填寫再送出
-		
+		//檢查是否所有項目已經填寫再送出		
+		if(regInfo.type.length===0 || regInfo.color.length===0|| regInfo.size.length===0){
+			setShowPopUp(true);
+			console.log("postchecker");
+		}else{
+			navigator();
+		}
+	}
+	function popUpSetter(){
+		setShowPopUp(false);
 	}
 
+	function navigator(){
+		navigate(navLink);
+		window.scroll({top: 0, left: 0, behavior: "smooth" }); 
+	}
 		
 
 	if(buttonText.length===0){
@@ -80,29 +94,34 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 	}
 
 	return ( 
-		<section 
-			onClick={()=>{
-				if(buttonText!=="選擇商品" && buttonText!=="送出"){
-					navigate(navLink);
-					window.scroll({top: 0, left: 0, behavior: "smooth" }); 
-				}else{
-					setValidateCount(validateCount+2);
-					buttonText==="送出"&&postChecker();
-				}
-			}}
-			className="fixed bottom-0 mt-auto bg-white h-[max-content] flex w-[100%] items-center justify-center flex-col">
-			<div className="w-[100%] h-[1px] bg-[#e9e9e9]"></div>
+		<>
+			<div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
+				<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={popUpSetter}/>			</div>
+			<section 
+				onClick={()=>{
+					if(buttonText!=="選擇商品" && buttonText!=="送出"){
+						// navigate(navLink);
+						// window.scroll({top: 0, left: 0, behavior: "smooth" }); 
+						navigator();
+					}else{
+						setValidateCount(validateCount+2);
+						buttonText==="送出"&&postChecker();
+					}
+				}}
+				className="fixed bottom-0 mt-auto bg-white h-[max-content] flex w-[100%] items-center justify-center flex-col">
+				<div className="w-[100%] h-[1px] bg-[#e9e9e9]"></div>
 
-			{buttonText==="送出"&& regInfo.price!==undefined&&(
-				<div className="flex items-center justify-between mb-[5px] mt-[5px] w-[91%]">
-					<span className="text-[#FF5353] text-[14px]">一經送出商品選項，不得修改</span>
-					<span className="text-[#FF5353] text-[14px]">NT${regInfo.price}</span>
+				{buttonText==="送出"&& regInfo.price!==undefined&&(
+					<div className="flex items-center justify-between mb-[5px] mt-[5px] w-[91%]">
+						<span className="text-[#FF5353] text-[14px]">一經送出商品選項，不得修改</span>
+						<span className="text-[#FF5353] text-[14px]">NT${regInfo.price}</span>
+					</div>
+				)}
+				<div className={`${regInfo.price===undefined&& "mt-[15px]"} cursor-pointer mb-[10px] w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center`}>
+					<span className="text-white text-[15px]">{buttonText}</span>
 				</div>
-			)}
-			<div className={`${regInfo.price===undefined&& "mt-[15px]"} cursor-pointer mb-[10px] w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center`}>
-				<span className="text-white text-[15px]">{buttonText}</span>
-			</div>
-		</section> );
+			</section> 
+		</>);
 	// 改進：sticky bottom
 }
 

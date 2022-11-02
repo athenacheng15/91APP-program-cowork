@@ -22,6 +22,7 @@ export default function Selection() {
 
 	useEffect(()=>{
 		//處理Gallery顯示的照片
+		console.log(regInfo);
 		if(regInfo.type.length!==0){
 			if(regInfo.color.length===0){
 				setImage(registerData.filter((item)=>(item.name===regInfo.type))[0].imgUrl);
@@ -75,14 +76,19 @@ export default function Selection() {
 		window.scroll({top: 0, left: 0, behavior: "smooth" }); 
 	}
 
+	// function doNothing(){
+	// 	return;
+	// }
+
 	return (
 		<section className="h-[max-content] bg-[#fafafa] flex flex-col">
 			<Gallery image={image}/>
 			<TitlePrice title={title} price={price} />
 			<Selector />
 			<BlankDiv />
-			{/* {navBack&&(<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>)} */}
+			{navBack&&(<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>)}
 			{/* 改進：之後記得將註解去除 */}
+			{/* {regInfo.type===undefined || regInfo.color===undefined|| regInfo.size===undefined && (<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={doNothing}/>)} ) */}
 		</section>
 
 
