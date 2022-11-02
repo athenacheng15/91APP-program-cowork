@@ -11,8 +11,7 @@ function EachSelector({info,localType}:EachSelectorProps) {
 	const iPhoneColor=registerData.filter((item:any)=>(item.type===regInfo.type));
 
 	useEffect(()=>{
-		//處理選擇不同iPhone時 color與size的UI
-		console.log(regInfo);
+		//處理選擇不同iPhone時 color，size與price的UI
 		regInfo.color.length===0 && info[0].color!==undefined && setClickName("");
 		regInfo.size.length===0 && info[0].name.includes("GB") && setClickName("");
 	}

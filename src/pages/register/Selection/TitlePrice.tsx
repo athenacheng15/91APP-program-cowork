@@ -1,9 +1,12 @@
+import { useEffect } from "react";
+
 type TitlePriceProps={
 	title:string;
 	price:string;
 }
 
 function TitlePrice({title,price}:TitlePriceProps) {
+
 	return ( <section className="w-[90%] self-center h-[max-content] flex flex-col">
 		<div className="mt-[16px] mb-[19px] text-[16px] font-[500]">{title}</div>
 		{price.length!==0 && (<div className="text-[#FF5353] text-[20px] font-[500]">NT${price}</div>)}

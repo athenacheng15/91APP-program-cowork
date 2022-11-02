@@ -10,7 +10,7 @@ import PopUp from "../../../components/PopUp";
 
 export default function Selection() {
 	const navigate = useNavigate();
-	const { regInfo } = useContext(UserContext);
+	const { regInfo,setRegInfo } = useContext(UserContext);
 	const[image,setImage]=useState<string>(defaultPhoto);	
 	const[navBack,setNavBack]=useState<boolean>(false);
 	const [title,setTitle]=useState<string>("Apple iPhone 13");
@@ -43,10 +43,20 @@ export default function Selection() {
 
 	useEffect(()=>{
 		//處理價錢
-		if(regInfo.color.length!==0 && regInfo.size.length!==0){
-			console.log(priceChart.filter((item:any)=>item.type===regInfo.type && item.size === regInfo.size)[0].price);
+		console.log(regInfo,"regInfo");
+		console.log(regInfo.price!==price);
+		if(regInfo.color.length!==0 && regInfo.size.length!==0 && (regInfo.price!==price || regInfo.price==="")){
+			const localPrice=priceChart.filter((item:any)=>item.type===regInfo.type && item.size === regInfo.size)[0].price;
+			setPrice(localPrice);
+			setRegInfo({...regInfo,price:localPrice});
 		}
+		if(regInfo.color.length===0 && regInfo.size.length===0){
+			setPrice("");
+		}
+
 	},[regInfo]);
+
+	// useEffect(()=>console.log(price),[price]);
 
 	function navigateBack(){
 		navigate("/register/reg");

@@ -48,7 +48,8 @@ export default function Register() {
 		checked:null,
 		type:"",
 		color:"",
-		size:""	
+		size:""	,
+		price:""
 	});
 
 	const [proPostInfo, setProPostInfo] = useState({
