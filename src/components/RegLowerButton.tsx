@@ -90,11 +90,12 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 					buttonText==="送出"&&postChecker();
 				}
 			}}
-			className=" bg-white h-[max-content] flex w-[100%] items-center justify-center">
+			className="bg-white h-[max-content] flex w-[100%] items-center justify-center">
 			<div className="cursor-pointer my-[20px] w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center">
 				<span className="text-white text-[15px]">{buttonText}</span>
 			</div>
 		</section> );
+	// 改進：sticky bottom
 }
 
 export default RegLowerButton;
