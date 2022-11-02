@@ -1,6 +1,8 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable indent */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import playBtn from "../../img/products/elements/play-button.png";
+import useVideoPlayer from "./useVideoPlayer";
 
 interface CarousellProps {
 	type: string;
@@ -18,6 +20,9 @@ export default function Carousell({
 	hight,
 }: CarousellProps) {
 	const [currentSlide, setCurrentSlide] = useState(0);
+	const videoElement = useRef(null);
+	const { isPlaying, togglePlay, handleOnTimeUpdate } =
+		useVideoPlayer(videoElement);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -34,15 +39,35 @@ export default function Carousell({
 				{imageList.map((image, index) => (
 					<div
 						key={index}
-						className={`${hight} w-[100%] shrink-0 border border-solid cursor-pointer bg-cover transition-all ease-in-out duration-700`}
+						className={`${hight} w-[100%] shrink-0 border border-solid bg-cover transition-all ease-in-out duration-700`}
 						style={{
 							marginLeft: index === 0 ? `-${currentSlide * 100}%` : undefined,
 						}}
 					>
 						{image.fileType === "img" ? (
-							<img src={image.img} className="h-[703px]" />
+							<img src={image.img} className="h-[703px] cursor-pointer" />
 						) : (
-							<video src={image.img} className="h-[703px]" autoPlay muted />
+							<div className="relative">
+								<button onClick={togglePlay}>
+									<video
+										src={image.img}
+										className="h-[703px]"
+										// autoPlay
+										// muted
+										ref={videoElement}
+										onTimeUpdate={handleOnTimeUpdate}
+									/>
+								</button>
+								<button
+									className="absolute top-[330px] left-[230px] rounded-full"
+									onClick={togglePlay}
+								>
+									<img
+										src={playBtn}
+										className={`${isPlaying ? "hidden" : "block"}`}
+									/>
+								</button>
+							</div>
 						)}
 					</div>
 				))}
