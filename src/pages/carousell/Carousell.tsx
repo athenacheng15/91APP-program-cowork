@@ -21,17 +21,28 @@ export default function Carousell({
 }: CarousellProps) {
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const videoElement = useRef(null);
+	const timerRef = useRef<any>(null);
 	const { isPlaying, togglePlay, handleOnTimeUpdate } =
 		useVideoPlayer(videoElement);
 
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			setCurrentSlide(
-				currentSlide >= imageList.length - 1 ? 0 : currentSlide + 1
-			);
+		timerRef.current = setTimeout(() => {
+			sliding();
 		}, autoPlayTime);
-		return () => clearTimeout(timer);
+		return () => clearTimeout(timerRef.current);
 	}, [currentSlide]);
+
+	function sliding() {
+		setCurrentSlide(
+			currentSlide >= imageList.length - 1 ? 0 : currentSlide + 1
+		);
+	}
+
+	function handleVideoEnded() {
+		timerRef.current = setTimeout(() => {
+			sliding();
+		}, autoPlayTime);
+	}
 
 	return (
 		<div>
@@ -52,15 +63,17 @@ export default function Carousell({
 									<video
 										src={image.img}
 										className="h-[703px]"
-										// autoPlay
-										// muted
 										ref={videoElement}
 										onTimeUpdate={handleOnTimeUpdate}
+										onEnded={handleVideoEnded}
 									/>
 								</button>
 								<button
 									className="absolute top-[330px] left-[230px] rounded-full"
-									onClick={togglePlay}
+									onClick={() => {
+										togglePlay();
+										clearTimeout(timerRef.current);
+									}}
 								>
 									<img
 										src={playBtn}
