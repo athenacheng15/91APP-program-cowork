@@ -14,13 +14,17 @@ import c01 from "../img/products/goods/c-01.png";
 import c02 from "../img/products/goods/c-02.png";
 import c03 from "../img/products/goods/c-03.png";
 import c04 from "../img/products/goods/c-04.png";
+import ad from "../img/products/goods/ad.mp4";
+
+export const testList = [{ id: 0, video: ad }];
 
 export const productsListForCarousell = [
-	{ id: 0, img: c04 },
-	{ id: 1, img: g106 },
-	{ id: 2, img: c01 },
-	{ id: 3, img: c02 },
-	{ id: 4, img: c03 },
+	{ id: 0, img: ad, fileType: "video" },
+	{ id: 1, img: c04, fileType: "img" },
+	{ id: 2, img: g106, fileType: "img" },
+	{ id: 3, img: c01, fileType: "img" },
+	{ id: 4, img: c02, fileType: "img" },
+	{ id: 5, img: c03, fileType: "img" },
 ];
 
 export const group1List = [

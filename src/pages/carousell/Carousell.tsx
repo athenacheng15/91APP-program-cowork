@@ -1,18 +1,19 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable indent */
 import { useState, useEffect } from "react";
 
 interface CarousellProps {
-	imageList: { id: number; img: string }[];
+	type: string;
+	imageList: { id: number; img: string; fileType: string }[];
 	arrowBtn: JSX.Element;
-	autoPlay: boolean;
 	autoPlayTime: number;
 	hight: string;
 }
 
 export default function Carousell({
+	type,
 	imageList,
 	arrowBtn,
-	autoPlay,
 	autoPlayTime,
 	hight,
 }: CarousellProps) {
@@ -33,13 +34,16 @@ export default function Carousell({
 				{imageList.map((image, index) => (
 					<div
 						key={index}
-						className={`${hight} w-[100%] shrink-0 border border-solid bg-cover transition-all ease-in-out duration-700`}
+						className={`${hight} w-[100%] shrink-0 border border-solid cursor-pointer bg-cover transition-all ease-in-out duration-700`}
 						style={{
-							backgroundImage: `url(${image.img})`,
 							marginLeft: index === 0 ? `-${currentSlide * 100}%` : undefined,
 						}}
 					>
-						{/* <img src={image.img} className="h-[703px]" /> */}
+						{image.fileType === "img" ? (
+							<img src={image.img} className="h-[703px]" />
+						) : (
+							<video src={image.img} className="h-[703px]" autoPlay muted />
+						)}
 					</div>
 				))}
 				<div
@@ -66,15 +70,30 @@ export default function Carousell({
 						{arrowBtn}
 					</button>
 				</div>
+				<div
+					className={`${
+						type === "products" ? "hidden" : "flex"
+					} absolute right-2 top-2 justify-center w-10 h-5 rounded-full bg-[#888]`}
+				>
+					<p className="text-xs text-[#fff]">{`${currentSlide + 1}/${
+						imageList.length
+					}`}</p>
+				</div>
 			</div>
 
 			<div className="flex justify-center mt-3 space-x-[10px]">
 				{imageList.map((image) => (
 					<button
 						key={image.id}
-						className={`w-2 h-2 rounded-full cursor-pointer ${
-							image.id === currentSlide ? "bg-[#4b4e5b]" : "bg-[#d8d9d8]"
-						} `}
+						className={`${
+							type === "products"
+								? `w-2 h-2 rounded-full  ${
+										image.id === currentSlide ? "bg-[#4b4e5b]" : "bg-[#d8d9d8]"
+								  }`
+								: `w-4 h-4 rounded-full border border-solid border-[#d2d2d2] ${
+										image.id === currentSlide ? "bg-[#d9d9d9]" : "bg-[#fff]"
+								  }`
+						} cursor-pointer `}
 						onClick={() => setCurrentSlide(image.id)}
 					></button>
 				))}

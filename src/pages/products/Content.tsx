@@ -20,10 +20,10 @@ export default function Content() {
 				<div className="w-[100%] h-[790px]">
 					<div className="h-[100%] w-[528px] mr-[17px] ">
 						<Carousell
+							type="products"
 							imageList={productsListForCarousell}
 							arrowBtn={<ArrowBtn />}
-							autoPlay={true}
-							autoPlayTime={2000}
+							autoPlayTime={5000}
 							hight={"h-[703px]"}
 						/>
 					</div>
