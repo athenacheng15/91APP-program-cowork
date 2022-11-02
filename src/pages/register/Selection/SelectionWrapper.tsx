@@ -15,6 +15,7 @@ export default function Selection() {
 	const[navBack,setNavBack]=useState<boolean>(false);
 	const [title,setTitle]=useState<string>("Apple iPhone 13");
 	const [price,setPrice]=useState<string>("");
+	const [size,setSize]=useState<string>("");
 
 
 
@@ -43,20 +44,30 @@ export default function Selection() {
 
 	useEffect(()=>{
 		//處理價錢
-		console.log(regInfo,"regInfo");
-		console.log(regInfo.price!==price);
-		if(regInfo.color.length!==0 && regInfo.size.length!==0 && (regInfo.price!==price || regInfo.price==="")){
+		console.log(regInfo.price,"regInfo price");
+		console.log(price,"local price");
+		console.log(regInfo.price!==price,"compare");
+		console.log(regInfo);
+		// console.log(size,"local size");
+		// console.log(regInfo.size,"regInfo size");
+		// console.log(size!==regInfo.size,"compare");
+		// && (regInfo.price!==price || regInfo.price==="")
+
+		if(regInfo.color.length!==0 && regInfo.size.length!==0 ){
+			console.log("run upper");
 			const localPrice=priceChart.filter((item:any)=>item.type===regInfo.type && item.size === regInfo.size)[0].price;
 			setPrice(localPrice);
 			setRegInfo({...regInfo,price:localPrice});
+			setSize(regInfo.size);
 		}
 		if(regInfo.color.length===0 && regInfo.size.length===0){
+			console.log("run down here");
+			
 			setPrice("");
 		}
 
 	},[regInfo]);
 
-	// useEffect(()=>console.log(price),[price]);
 
 	function navigateBack(){
 		navigate("/register/reg");
