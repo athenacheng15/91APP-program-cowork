@@ -59,7 +59,6 @@ function InputForm() {
 			{regInfo.checked===false && (
 				<ValidationWarning text={"請確認同意隱私權及網站使用條款"} />
 			)}
-			<div className="mt-[15px] mb-[15px] w-[100%] h-[1px] bg-[#e9e9e9]"></div>
 		</div>
 	</section> );
 }

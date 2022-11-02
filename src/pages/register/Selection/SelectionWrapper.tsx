@@ -7,6 +7,7 @@ import TitlePrice from "./TitlePrice";
 import {registerData,priceChart} from "../../../data/registerData";
 import defaultPhoto from"../../../img/register/iPhone-images/pro-iphone-13-sky.png";
 import PopUp from "../../../components/PopUp";
+import BlankDiv from "./BlankDiv";
 
 export default function Selection() {
 	const navigate = useNavigate();
@@ -79,6 +80,7 @@ export default function Selection() {
 			<Gallery image={image}/>
 			<TitlePrice title={title} price={price} />
 			<Selector />
+			<BlankDiv />
 			{/* {navBack&&(<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>)} */}
 			{/* 改進：之後記得將註解去除 */}
 		</section>

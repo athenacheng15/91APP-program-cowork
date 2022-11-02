@@ -90,8 +90,16 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 					buttonText==="送出"&&postChecker();
 				}
 			}}
-			className="bg-white h-[max-content] flex w-[100%] items-center justify-center">
-			<div className="cursor-pointer my-[20px] w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center">
+			className="fixed bottom-0 mt-auto bg-white h-[max-content] flex w-[100%] items-center justify-center flex-col">
+			<div className="w-[100%] h-[1px] bg-[#e9e9e9]"></div>
+
+			{buttonText==="送出"&& regInfo.price!==undefined&&(
+				<div className="flex items-center justify-between mb-[5px] mt-[5px] w-[91%]">
+					<span className="text-[#FF5353] text-[14px]">一經送出商品選項，不得修改</span>
+					<span className="text-[#FF5353] text-[14px]">NT${regInfo.price}</span>
+				</div>
+			)}
+			<div className={`${regInfo.price===undefined&& "mt-[15px]"} cursor-pointer mb-[10px] w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center`}>
 				<span className="text-white text-[15px]">{buttonText}</span>
 			</div>
 		</section> );
