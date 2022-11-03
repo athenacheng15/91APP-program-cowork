@@ -7,7 +7,7 @@ import TitlePrice from "./TitlePrice";
 import {registerData,priceChart} from "../../../data/registerData";
 import defaultPhoto from"../../../img/register/iPhone-images/pro-iphone-13-sky.png";
 import PopUp from "../../../components/PopUp";
-import BlankDiv from "./BlankDiv";
+import BlankDiv from "../../../components/BlankDiv";
 
 export default function Selection() {
 	const navigate = useNavigate();

@@ -33,7 +33,8 @@ export default function Register() {
 		}
 		case "/register/success":{
 			setButtonText("加入會員");
-			setNavLink("/register");
+			setNavLink("/");
+			// 改進：因為實際上沒有加入會員功能，所以設定會到主頁
 			break;
 		}
 		default:
@@ -46,10 +47,10 @@ export default function Register() {
 		phone:"",
 		email:"",
 		checked:null,
-		type:"",
-		color:"",
-		size:""	,
-		price:""
+		type:"iPhone 13",
+		color:"藍色",
+		size:"128GB",
+		price:"28,600"
 	});
 
 	const [proPostInfo, setProPostInfo] = useState({
