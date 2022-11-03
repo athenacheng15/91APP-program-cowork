@@ -8,7 +8,10 @@ export default function SuccessWrapper() {
 		<section className="w-[100%] flex flex-col h-[max-content] md:bg-[#eeeeee]">
 			<SuccessHeader />
 			<SuccessInfo />
-			<RegRule />
+			<div className="md:mt-[40px] flex justify-center">
+				<RegRule />
+			</div>
+			
 			<BlankDiv />
 		</section>
 	);

@@ -27,14 +27,14 @@ function EachListItem({info}:EachListItemProps) {
 						)}
 						{item.style==="normal" && (
 							<>
-								<div className="ml-[9px] text-[14px] text-[#333333]">{item.left}</div>
-								<div className={"text-[#333333] ml-[9px] text-[14px] font-[500]"}>{item.right}</div> 
+								<div className="ml-[9px] text-[14px] text-[#333333] md:text-[24px]">{item.left}</div>
+								<div className={"text-[#333333] ml-[9px] text-[14px] font-[500] md:text-[24px]"}>{item.right}</div> 
 							</>
 						)}
 						{item.style==="red" && (
 							<>
-								<div className="ml-[9px] text-[14px] text-[#333333]">{item.left}</div>
-								<div className={"text-[#ff4949] ml-[9px] text-[14px] font-[500]"}>{item.right}</div> 
+								<div className="ml-[9px] text-[14px] text-[#333333] md:text-[24px]">{item.left}</div>
+								<div className={"text-[#ff4949] ml-[9px] text-[14px] font-[500] md:text-[24px]"}>{item.right}</div> 
 							</>
 						)}
 						{/* {item.left}
