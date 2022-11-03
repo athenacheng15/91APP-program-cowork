@@ -1,7 +1,9 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable indent */
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import playBtn from "../../img/products/elements/play-button.png";
+import { getTouchEventData } from "./dom";
+import { getRefValue, useSwiperRef } from "./useSwiper";
 import useVideoPlayer from "./useVideoPlayer";
 
 interface CarousellProps {
@@ -9,7 +11,7 @@ interface CarousellProps {
 	imageList: { id: number; img: string; fileType: string }[];
 	arrowBtn: JSX.Element;
 	autoPlayTime: number;
-	hight: string;
+	width: number;
 }
 
 export default function Carousell({
@@ -17,12 +19,20 @@ export default function Carousell({
 	imageList,
 	arrowBtn,
 	autoPlayTime,
-	hight,
+	width,
 }: CarousellProps) {
+	const MIN_SWIPE_REQUIRE = 40;
 	const [currentSlide, setCurrentSlide] = useState(0);
+	const [isSwiping, setIsSwiping] = useState(false);
 	const videoElement = useRef(null);
 	const timerRef = useRef<any>(null);
-	const { isPlaying, togglePlay, handleOnTimeUpdate } =
+	const containerRef = useRef<HTMLDivElement>(null);
+	const containerWidthRef = useRef(0);
+	const [offsetX, setOffsetX, offsetXref] = useSwiperRef(0);
+	const currentOffsetXRef = useRef(0);
+	const startXRef = useRef(0);
+	const minOffsetXRef = useRef(0);
+	const { isPlaying, togglePlay, pauseVideo, handleOnTimeUpdate } =
 		useVideoPlayer(videoElement);
 
 	useEffect(() => {
@@ -32,40 +42,146 @@ export default function Carousell({
 		return () => clearTimeout(timerRef.current);
 	}, [currentSlide]);
 
+	// function sliding() {
+	// 	setCurrentSlide(
+	// 		currentSlide >= imageList.length - 1 ? 0 : currentSlide + 1
+	// 	);
+	// }
 	function sliding() {
-		setCurrentSlide(
-			currentSlide >= imageList.length - 1 ? 0 : currentSlide + 1
-		);
+		const containerWidth = getRefValue(containerRef).offsetWidth;
+		const slideIndex =
+			currentSlide >= imageList.length - 1 ? 0 : currentSlide + 1;
+		setCurrentSlide(slideIndex);
+		setOffsetX(-(containerWidth * slideIndex));
 	}
 
 	function handleVideoEnded() {
+		togglePlay();
 		timerRef.current = setTimeout(() => {
 			sliding();
 		}, autoPlayTime);
 	}
 
+	if (!isPlaying) {
+		clearTimeout(timerRef.current);
+		timerRef.current = setTimeout(() => {
+			sliding();
+		}, autoPlayTime);
+	}
+
+	function handleTouchEnd() {
+		const containerWith = getRefValue(containerWidthRef);
+		let newOffsetX = getRefValue(offsetXref);
+
+		const diff = getRefValue(currentOffsetXRef) - newOffsetX;
+		if (Math.abs(diff) > MIN_SWIPE_REQUIRE) {
+			if (diff > 0) {
+				newOffsetX = Math.floor(newOffsetX / containerWith) * containerWith;
+			} else {
+				newOffsetX = Math.ceil(newOffsetX / containerWith) * containerWith;
+			}
+		} else {
+			newOffsetX = Math.round(newOffsetX / containerWith) * containerWith;
+		}
+
+		setIsSwiping(false);
+		setOffsetX(newOffsetX);
+		setCurrentSlide(Math.abs(newOffsetX / containerWith));
+
+		window.removeEventListener("touchmove", handleTouchMove);
+		window.removeEventListener("touchend", handleTouchEnd);
+		window.removeEventListener("mousemove", handleTouchMove);
+		window.removeEventListener("mouseup", handleTouchEnd);
+	}
+
+	function handleTouchStart(
+		e: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>
+	) {
+		setIsSwiping(true);
+		currentOffsetXRef.current = getRefValue(offsetXref);
+		startXRef.current = getTouchEventData(e).clientX;
+
+		const containerElement = getRefValue(containerRef);
+
+		containerWidthRef.current = containerElement.offsetWidth;
+		minOffsetXRef.current =
+			containerElement.offsetWidth - containerElement.scrollWidth;
+
+		window.addEventListener("touchmove", handleTouchMove);
+		window.addEventListener("touchend", handleTouchEnd);
+		window.addEventListener("mousemove", handleTouchMove);
+		window.addEventListener("mouseup", handleTouchEnd);
+	}
+
+	function handleTouchMove(e: TouchEvent | MouseEvent) {
+		const currentX = getTouchEventData(e).clientX;
+		const diff = getRefValue(startXRef) - currentX;
+		let newOffsetX = getRefValue(currentOffsetXRef) - diff;
+
+		const maxOffsetX = 0;
+		const minOffsetX = getRefValue(minOffsetXRef);
+		if (newOffsetX > maxOffsetX) {
+			newOffsetX = 0;
+		}
+		if (newOffsetX < minOffsetX) {
+			newOffsetX = minOffsetX;
+		}
+
+		setOffsetX(newOffsetX);
+	}
+
+	function indicatorOnClick(index: number) {
+		const containerWidth = getRefValue(containerRef).offsetWidth;
+		setCurrentSlide(index);
+		setOffsetX(-(containerWidth * index));
+	}
+
+	function lastImg() {
+		const containerWidth = getRefValue(containerRef).offsetWidth;
+		setCurrentSlide(currentSlide - 1);
+		setOffsetX(-(containerWidth * (currentSlide - 1)));
+	}
+
+	function nextImg() {
+		const containerWidth = getRefValue(containerRef).offsetWidth;
+		setCurrentSlide(currentSlide + 1);
+		setOffsetX(-(containerWidth * (currentSlide + 1)));
+	}
+
 	return (
-		<div>
-			<div className="relative flex flex-nowrap w-[100%] h-[100%] overflow-x-hidden ">
+		<div onTouchStart={handleTouchStart} onMouseDown={handleTouchStart}>
+			<div
+				className="relative flex flex-nowrap w-[100%] h-[100%] overflow-x-hidden"
+				ref={containerRef}
+			>
 				{imageList.map((image, index) => (
 					<div
 						key={index}
-						className={`${hight} w-[100%] shrink-0 border border-solid bg-cover transition-all ease-in-out duration-700`}
+						className="shrink-0 bg-cover touch-pan-y"
 						style={{
-							marginLeft: index === 0 ? `-${currentSlide * 100}%` : undefined,
+							transform: `translate3d(${offsetX}px, 0, 0)`,
+							transition: `${
+								isSwiping ? "none" : "transform 0.3s ease-in-out"
+							}`,
+							width: `${width}px`,
 						}}
 					>
 						{image.fileType === "img" ? (
-							<img src={image.img} className="h-[703px] cursor-pointer" />
+							<img
+								src={image.img}
+								className="h-[703px] cursor-pointer"
+								draggable={false}
+							/>
 						) : (
 							<div className="relative">
-								<button onClick={togglePlay}>
+								<button onClick={pauseVideo}>
 									<video
 										src={image.img}
 										className="h-[703px]"
 										ref={videoElement}
 										onTimeUpdate={handleOnTimeUpdate}
 										onEnded={handleVideoEnded}
+										draggable={false}
 									/>
 								</button>
 								<button
@@ -95,7 +211,7 @@ export default function Carousell({
 				>
 					<button
 						className={`cursor-pointer ${currentSlide === 0 && "hidden"}`}
-						onClick={() => setCurrentSlide(currentSlide - 1)}
+						onClick={lastImg}
 					>
 						{arrowBtn}
 					</button>
@@ -103,7 +219,7 @@ export default function Carousell({
 						className={`scale-x-[-1] cursor-pointer ${
 							currentSlide === imageList.length - 1 && "hidden"
 						} `}
-						onClick={() => setCurrentSlide(currentSlide + 1)}
+						onClick={nextImg}
 					>
 						{arrowBtn}
 					</button>
@@ -120,19 +236,19 @@ export default function Carousell({
 			</div>
 
 			<div className="flex justify-center mt-3 space-x-[10px]">
-				{imageList.map((image) => (
+				{imageList.map((image, index) => (
 					<button
 						key={image.id}
 						className={`${
 							type === "products"
 								? `w-2 h-2 rounded-full  ${
-										image.id === currentSlide ? "bg-[#4b4e5b]" : "bg-[#d8d9d8]"
+										index === currentSlide ? "bg-[#4b4e5b]" : "bg-[#d8d9d8]"
 								  }`
 								: `w-4 h-4 rounded-full border border-solid border-[#d2d2d2] ${
-										image.id === currentSlide ? "bg-[#d9d9d9]" : "bg-[#fff]"
+										index === currentSlide ? "bg-[#d9d9d9]" : "bg-[#fff]"
 								  }`
 						} cursor-pointer `}
-						onClick={() => setCurrentSlide(image.id)}
+						onClick={() => indicatorOnClick(index)}
 					></button>
 				))}
 			</div>
