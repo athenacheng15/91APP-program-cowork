@@ -42,11 +42,6 @@ export default function Carousell({
 		return () => clearTimeout(timerRef.current);
 	}, [currentSlide]);
 
-	// function sliding() {
-	// 	setCurrentSlide(
-	// 		currentSlide >= imageList.length - 1 ? 0 : currentSlide + 1
-	// 	);
-	// }
 	function sliding() {
 		const containerWidth = getRefValue(containerRef).offsetWidth;
 		const slideIndex =
