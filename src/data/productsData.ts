@@ -10,6 +10,22 @@ import g105 from "../img/products/goods/g1-05.png";
 import g106 from "../img/products/goods/g1-06.png";
 import g201 from "../img/products/goods/g2-01.png";
 import g202 from "../img/products/goods/g2-02.png";
+import c01 from "../img/products/goods/c-01.png";
+import c02 from "../img/products/goods/c-02.png";
+import c03 from "../img/products/goods/c-03.png";
+import c04 from "../img/products/goods/c-04.png";
+import ad from "../img/products/goods/ad.mp4";
+
+export const testList = [{ id: 0, video: ad }];
+
+export const productsListForCarousell = [
+	{ id: 0, img: ad, fileType: "video" },
+	{ id: 1, img: c04, fileType: "img" },
+	{ id: 2, img: g106, fileType: "img" },
+	{ id: 3, img: c01, fileType: "img" },
+	{ id: 4, img: c02, fileType: "img" },
+	{ id: 5, img: c03, fileType: "img" },
+];
 
 export const group1List = [
 	{ id: 1, imgUrl: g101 },
@@ -35,6 +51,7 @@ export const sideList = [
 		imgUrl: side1,
 		originalPrice: 5,
 		price: 200,
+		mark: "即將開賣",
 	},
 	{
 		id: 2,
@@ -43,6 +60,7 @@ export const sideList = [
 		imgUrl: side2,
 		originalPrice: 20,
 		price: 450,
+		mark: "已售完",
 	},
 	{
 		id: 3,
@@ -127,4 +145,3 @@ export const sideBarList = [
 		items: ["【深色款】"],
 	},
 ];
-
