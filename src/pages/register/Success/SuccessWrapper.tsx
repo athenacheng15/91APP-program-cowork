@@ -1,5 +1,5 @@
 import BlankDiv from "../../../components/BlankDiv";
-import RegRule from "./RegRule";
+import RegRule from "../../../components/RegRule";
 import SuccessHeader from "./SuccessHeader";
 import SuccessInfo from "./SuccessInfo";
 
