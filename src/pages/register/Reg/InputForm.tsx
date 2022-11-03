@@ -9,8 +9,8 @@ function InputForm() {
 	const { regInfo, proPostInfo, setProPostInfo } = useContext(UserContext);
 	
 
-	return ( <section className="w-[100%] bg-white h-[max-content] flex flex-col">
-		<div className="flex flex-col">
+	return ( <section className="w-[100%] bg-white h-[max-content] flex flex-col md:mt-[60px] md:w-[75%] md:max-w-[1080px]">
+		<div className="flex flex-col md:border-solid md:bolder-[1px] md:border-[#d8d8d8]">
 			<InputTitle text={"姓名"} />
 			<input 
 				onChange={(e)=>{
@@ -48,7 +48,7 @@ function InputForm() {
 				}}
 				placeholder="輸入 Email" className={`${regInfo.email==="WRONG" ? "border-[#fe494e]" :"border-[#dddddd]"} p-[10px] w-[90%] self-center rounded-md h-[40px] border-solid border-[1px]`}></input>
 			{regInfo.email==="WRONG"&&(<ValidationWarning text={"Email 格式錯誤，請重新輸入"} />)}
-			<div className="flex mt-[20px] w-[90%] self-center items-center">
+			<div className="flex mt-[20px] w-[90%] self-center items-center mb-[20px]">
 				<input 
 					onChange={(e)=>{
 						setProPostInfo({...proPostInfo,checked:e.target.checked});

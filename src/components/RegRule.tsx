@@ -2,7 +2,7 @@ function RegRule() {
 
 	const listItem=["預約活動方法及聲明：於指定活動網頁登記預約資料，後續透過簡訊及email依照登記順序通知購買。限量預約，預約登記額滿為止。","預約購買辦法：預約人需於9/24 8:00依預約登記順序提供專屬購買。","預約登記僅擁有優先購買資格，不代表訂購完成，訂單成立且成功付款後，方為完成訂購程序。"];
 
-	return ( <section className="w-[100%] min-h-[722px] bg-white flex flex-col items-center md:max-w-[75%] md:w-[75%] md:min-h-0 md:h-[max-content] md:mb-[60px]">
+	return ( <section className="w-[100%] min-h-[722px] bg-white flex flex-col items-center md:max-w-[75%] md:w-[75%] md:min-h-0 md:h-[max-content] md:mb-[60px] md:self-center">
 		<div className="w-[84%] mt-[20px] mb-[16px] flex flex-col">
 			<ol className="list-decimal text-[10px] "><span className="font-[700] text-[#666666]">預約活動說明：</span>
 				<li className="text-[#666666] font-[300] leading-[23px]">預約登記日期：即日起至 <span className="text-[#FF5353]">2021/9/23(四)23:59 </span>為止。</li>

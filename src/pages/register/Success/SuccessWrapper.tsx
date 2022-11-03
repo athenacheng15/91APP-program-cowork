@@ -5,7 +5,7 @@ import SuccessInfo from "./SuccessInfo";
 
 export default function SuccessWrapper() {
 	return (
-		<section className="w-[100%] flex flex-col h-[max-content]">
+		<section className="w-[100%] flex flex-col h-[max-content] md:bg-[#eeeeee]">
 			<SuccessHeader />
 			<SuccessInfo />
 			<RegRule />

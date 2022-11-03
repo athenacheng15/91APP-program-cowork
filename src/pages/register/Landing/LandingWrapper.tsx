@@ -7,7 +7,7 @@ export default function Land() {
 	return <section className="min-h-[1195px] bg-[#fafafa] flex flex-col items-center md:flex-row md:items-start md:flex-wrap">
 		<div className="w-[100%] flex-col flex md:flex-row md:justify-center">
 			<div className="flex-col flex w-[100%] items-center md:order-2 md:w-[max-content] md:max-w-[40%] md:justify-center">
-				<UpperTitle />
+				<UpperTitle page="landing"/>
 				<Schedule />
 			</div>
 			<Blank />
