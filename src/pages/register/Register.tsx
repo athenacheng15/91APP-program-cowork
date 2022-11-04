@@ -63,11 +63,14 @@ export default function Register() {
 		color:"",
 		size:""
 	});
+
+	const[xOffSet,setXOffSet]=useState<number>(-22);
+
 	
 
 
 	return (
-		<UserContext.Provider value={{ regInfo, setRegInfo,proPostInfo,setProPostInfo }}>
+		<UserContext.Provider value={{ regInfo, setRegInfo,proPostInfo,setProPostInfo,xOffSet,setXOffSet }}>
 			<section className="w-[100%]">
 				<div className="h-[57px] bg-[#ff5455] flex items-center">
 					<img src={logo} alt="" className="w-[75px] h-[21px] ml-[20px] cursor-pointer"></img>

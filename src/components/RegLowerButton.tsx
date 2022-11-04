@@ -114,7 +114,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			<div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
 				<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={popUpSetter}/></div>
 			<div className={`${showReg ? "fixed" : "hidden"} left-[30%]`}>
-				<PopUp title="已加入會員" content="點擊會到主頁" buttonText="回到主頁" buttonFunction={navToHome}/></div>
+				<PopUp title="已加入會員" content="點擊回到主頁" buttonText="回到主頁" buttonFunction={navToHome}/></div>
 			<section 
 				onClick={()=>{
 					if(buttonText!=="選擇商品" && buttonText!=="送出" && buttonText!=="加入會員"){
@@ -130,8 +130,8 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 				className="fixed bottom-0 mt-auto bg-white h-[max-content] flex w-[100%] items-center justify-center flex-col">
 				<div className="w-[100%] h-[1px] bg-[#e9e9e9]"></div>
 
-				{buttonText==="送出"&& regInfo.price!==undefined&&(
-					<div className="flex items-center justify-between mb-[5px] mt-[5px] w-[91%]">
+				{buttonText==="送出"&& regInfo.size.length!==0&&(
+					<div className="flex items-center justify-between mt-[5px] w-[91%]">
 						<span className="text-[#FF5353] text-[14px]">一經送出商品選項，不得修改</span>
 						<span className="text-[#FF5353] text-[14px]">NT${regInfo.price}</span>
 					</div>
@@ -141,7 +141,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 						<span className="text-[#FF5353] text-[14px]">立刻加入會員，開賣通知不漏接！</span>
 					</div>
 				)}
-				<div className={`${regInfo.price===undefined&& "mt-[15px]"} cursor-pointer mb-[10px] w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center`}>
+				<div className={`${regInfo.price===undefined&& "mt-[15px]"} mt-[15px] cursor-pointer mb-[10px] w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center`}>
 					<span className="text-white text-[15px]">{buttonText}</span>
 				</div>
 			</section> 
