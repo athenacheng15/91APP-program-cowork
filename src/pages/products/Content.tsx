@@ -17,8 +17,8 @@ export default function Content() {
 	return (
 		<>
 			<div className="flex">
-				<div className="w-[100%] h-[790px]">
-					<div className="h-[100%] w-[528px] mr-[17px] ">
+				<div className="h-[790px] w-[100%]">
+					<div className="mr-[17px] h-[100%] w-[528px] ">
 						<Carousell
 							type="products"
 							imageList={productsListForCarousell}
@@ -52,7 +52,7 @@ export default function Content() {
 					</div>
 				</div>
 			</div>
-			<div className="w-[100%] mt-[44px]">
+			<div className="mt-[44px] w-[100%]">
 				<AdditionalBar title="此店員其他穿搭" contentList={group1List} />
 				<AdditionalBar title="其他穿搭推薦" contentList={group2List} />
 			</div>
@@ -71,22 +71,32 @@ interface CardProps {
 
 function Card({ brand, name, imgUrl, originalPrice, price, mark }: CardProps) {
 	return (
-		<div className="flex w-[100%] h-[168px] border-b border-[#eee] border-solid py-5 pl-5 last:border-0">
-			<div
-				className="flex justify-center items-center w-[108px] h-[128px] mr-[17px] bg-cover bg-center"
+		<div className="flex h-[168px] w-[100%] border-b border-solid border-[#eee] py-5 pl-5 last:border-0">
+			<button
+				className={`${
+					mark ? "cursor-default" : "cursor-pointer"
+				} mr-[17px] flex h-[128px] w-[108px] items-center justify-center bg-cover bg-center`}
 				style={{ backgroundImage: `url(${imgUrl})` }}
 			>
 				<div
 					className={`${
 						mark ? "flex" : "hidden"
-					} justify-center items-center w-20 h-7 bg-[#666] rounded-full text-[14px] text-[#fff] font-light`}
+					} h-7 w-20 items-center justify-center rounded-full bg-[#666] text-[14px] font-light text-[#fff]`}
 				>
 					<p>{mark}</p>
 				</div>
-			</div>
-			<div className="text-[14px] w-[190px] h-[128px]">
-				<p className="text-[#999]">{brand}</p>
-				<p className="mb-8">{name}</p>
+			</button>
+			<div className="h-[128px] w-[190px] text-[14px]">
+				<button className="cursor-pointer text-[#999] hover:underline">
+					{brand}
+				</button>
+				<button
+					className={`mb-8 text-left ${
+						!mark && "cursor-pointer hover:underline"
+					}`}
+				>
+					{name}
+				</button>
 				<p className="text-xs text-[#999] line-through">NT${originalPrice}</p>
 				<div className="flex justify-between">
 					<p className="text-[16px] text-[#ff655d]">NT${price}</p>
@@ -113,7 +123,7 @@ function AdditionalBar({ title, contentList }: AdditionalBarProps) {
 	return (
 		<>
 			<p>{title}</p>
-			<div className="flex justify-between mb-[60px] mt-[14px]">
+			<div className="mb-[60px] mt-[14px] flex justify-between">
 				{contentList.map((item) => (
 					<img
 						key={item.id}
