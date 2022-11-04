@@ -121,7 +121,7 @@ export default function Selection() {
 					className={`${lengthNow===carouselLength?"hidden":"block"} absolute bottom-[15%] left-[507px] hidden xl:block`}>
 					<ChevronRightIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
 				</div>
-				<div className="flex flex-col max-w-[376px] ml-[89px]">
+				<div className="flex flex-col max-w-[100%] md:max-w-[376px] ml-0 md:ml-[89px]">
 					<TitlePrice title={title} price={price} />
 					<Selector />
 				</div>
