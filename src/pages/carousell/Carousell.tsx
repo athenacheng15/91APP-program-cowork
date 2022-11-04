@@ -12,6 +12,8 @@ interface CarousellProps {
 	arrowBtn: JSX.Element;
 	autoPlayTime: number;
 	width: number;
+	height: number;
+	arrowBtnheight: number;
 }
 
 export default function Carousell({
@@ -20,6 +22,8 @@ export default function Carousell({
 	arrowBtn,
 	autoPlayTime,
 	width,
+	height,
+	arrowBtnheight,
 }: CarousellProps) {
 	const MIN_SWIPE_REQUIRE = 40;
 	const [currentSlide, setCurrentSlide] = useState(0);
@@ -146,13 +150,13 @@ export default function Carousell({
 	return (
 		<div onTouchStart={handleTouchStart} onMouseDown={handleTouchStart}>
 			<div
-				className="relative flex flex-nowrap w-[100%] h-[100%] overflow-x-hidden"
+				className="relative flex h-[100%] w-[100%] flex-nowrap overflow-x-hidden"
 				ref={containerRef}
 			>
 				{imageList.map((image, index) => (
 					<div
 						key={index}
-						className="shrink-0 bg-cover touch-pan-y"
+						className="shrink-0 touch-pan-y bg-cover"
 						style={{
 							transform: `translate3d(${offsetX}px, 0, 0)`,
 							transition: `${
@@ -162,21 +166,24 @@ export default function Carousell({
 						}}
 					>
 						{image.fileType === "img" ? (
-							<img
-								src={image.img}
-								className="h-[703px] cursor-pointer"
-								draggable={false}
-							/>
+							<div className="flex justify-center">
+								<img
+									src={image.img}
+									className="cursor-pointer"
+									draggable={false}
+									style={{ height: `${height}px` }}
+								/>
+							</div>
 						) : (
 							<div className="relative">
 								<button onClick={pauseVideo}>
 									<video
 										src={image.img}
-										className="h-[703px]"
 										ref={videoElement}
 										onTimeUpdate={handleOnTimeUpdate}
 										onEnded={handleVideoEnded}
 										draggable={false}
+										style={{ height: `${height}px` }}
 									/>
 								</button>
 								<button
@@ -196,13 +203,14 @@ export default function Carousell({
 					</div>
 				))}
 				<div
-					className={`absolute flex items-center left-0 top-[335px] w-[100%] px-2 ${
+					className={`absolute left-0 flex w-[100%] items-center px-2 ${
 						currentSlide === 0
 							? "justify-end"
 							: currentSlide === imageList.length - 1
 							? "justify-start"
 							: "justify-between"
 					}`}
+					style={{ top: `${arrowBtnheight}px` }}
 				>
 					<button
 						className={`cursor-pointer ${currentSlide === 0 && "hidden"}`}
@@ -222,7 +230,7 @@ export default function Carousell({
 				<div
 					className={`${
 						type === "products" ? "hidden" : "flex"
-					} absolute right-2 top-2 justify-center w-10 h-5 rounded-full bg-[#888]`}
+					} absolute right-2 top-2 h-5 w-10 justify-center rounded-full bg-[#888]`}
 				>
 					<p className="text-xs text-[#fff]">{`${currentSlide + 1}/${
 						imageList.length
@@ -230,16 +238,16 @@ export default function Carousell({
 				</div>
 			</div>
 
-			<div className="flex justify-center mt-3 space-x-[10px]">
+			<div className=" flex justify-center space-x-[10px] md:mt-3">
 				{imageList.map((image, index) => (
 					<button
 						key={image.id}
 						className={`${
 							type === "products"
-								? `w-2 h-2 rounded-full  ${
+								? `h-2 w-2 rounded-full  ${
 										index === currentSlide ? "bg-[#4b4e5b]" : "bg-[#d8d9d8]"
 								  }`
-								: `w-4 h-4 rounded-full border border-solid border-[#d2d2d2] ${
+								: `mt-[-10px] h-3 w-3 rounded-full border border-solid border-[#d2d2d2] ${
 										index === currentSlide ? "bg-[#d9d9d9]" : "bg-[#fff]"
 								  }`
 						} cursor-pointer `}
