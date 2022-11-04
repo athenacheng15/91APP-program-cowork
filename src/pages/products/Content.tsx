@@ -24,7 +24,9 @@ export default function Content() {
 							imageList={productsListForCarousell}
 							arrowBtn={<ArrowBtn />}
 							autoPlayTime={5000}
+							height={702}
 							width={528}
+							arrowBtnheight={335}
 						/>
 					</div>
 				</div>
@@ -76,6 +78,7 @@ function Card({ brand, name, imgUrl, originalPrice, price, mark }: CardProps) {
 				className={`${
 					mark ? "cursor-default" : "cursor-pointer"
 				} mr-[17px] flex h-[128px] w-[108px] items-center justify-center bg-cover bg-center`}
+			<div
 				style={{ backgroundImage: `url(${imgUrl})` }}
 			>
 				<div
@@ -97,7 +100,8 @@ function Card({ brand, name, imgUrl, originalPrice, price, mark }: CardProps) {
 				>
 					{name}
 				</button>
-				<p className="text-xs text-[#999] line-through">NT${originalPrice}</p>
+			</div>
+					<p className="text-xs text-[#999] line-through">NT${originalPrice}</p>
 				<div className="flex justify-between">
 					<p className="text-[16px] text-[#ff655d]">NT${price}</p>
 					<div className="flex space-x-3">
