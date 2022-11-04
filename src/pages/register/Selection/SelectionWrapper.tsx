@@ -113,12 +113,12 @@ export default function Selection() {
 				<Gallery image={image}/>
 				<div 
 					onClick={()=>backwardHandler()}
-					className={`${lengthNow===5? "hidden" :"block"} absolute bottom-[15%] left-[40px]`}>
+					className={`${lengthNow===5? "hidden" :"block"} absolute bottom-[15%] left-[40px] hidden xl:block`}>
 					<ChevronLeftIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
 				</div>
 				<div 
 					onClick={()=>forwardHandler()}
-					className={`${lengthNow===carouselLength?"hidden":"block"} absolute bottom-[15%] left-[507px]`}>
+					className={`${lengthNow===carouselLength?"hidden":"block"} absolute bottom-[15%] left-[507px] hidden xl:block`}>
 					<ChevronRightIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
 				</div>
 				<div className="flex flex-col max-w-[376px] ml-[89px]">
