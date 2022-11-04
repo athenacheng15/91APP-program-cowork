@@ -26,24 +26,31 @@ function SelectionCarousel({image}:SelectionCarouselProps) {
 	if(image===undefined){
 		return<></>;
 	}
-	return ( <div 
-		style={{
-			transform: `translate3d(${3}px, 0, 0)`,
-			transition: "transform 0.3s ease-in-out"
-		}}
-		className="hidden md:flex w-[100%] justify-center md:mb-[70px]">
-		<ChevronLeftIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
-		{image.map((item,index)=>(
-			<>
-				{initialState&&index>0&&index<6&&(<img key={item} src={item} alt="" className="w-[83px] h-[83px]"></img>)}
-				{!initialState&&index>startIndex&&index<endIndex&&(<img key={item} src={item} alt="" className="w-[83px] h-[83px]"></img>)}
-			</>
-		))}
-		<div onClick={()=>forwardHandler()}>
-			<ChevronRightIcon 
-				size={24} fill="#8e8e8e" className="ml-[20px] self-center cursor-pointer" />
-		</div>
-	</div> );
+	return ( 
+		<div className="max-w-[420px] overflow-hidden">
+			<div 
+				style={{
+					transform: `translate3d(${180}px, 0, 0)`,
+					transition: "transform 0.3s ease-in-out"
+				}}
+				className="hidden md:flex w-[100%] justify-center md:mb-[70px]">
+				{/* <ChevronLeftIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" /> */}
+				{image.map((item,index)=>(
+					<>
+						<img key={item} src={item} alt="" className={"w-[83px] h-[83px]"}></img>
+						{/* {initialState&&index>0&&index<6&&(<img key={item} src={item} alt="" className="w-[83px] h-[83px]"></img>)} */}
+						{/* {!initialState&&index>startIndex&&index<endIndex&&(<img key={item} src={item} alt="" className="w-[83px] h-[83px]"></img>)} */}
+					</>
+				))}
+				<div onClick={()=>forwardHandler()}>
+					{/* <ChevronRightIcon 
+						size={24} fill="#8e8e8e" className="ml-[20px] self-center cursor-pointer" /> */}
+				</div>
+			</div> 
+			{/* <button>left</button>
+			<button>right</button> */}
+
+		</div>);
 }
 
 export default  SelectionCarousel;

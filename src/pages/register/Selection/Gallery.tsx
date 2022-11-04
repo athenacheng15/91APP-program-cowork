@@ -18,7 +18,7 @@ function Gallery({image}:GalleryProps) {
 		}
 	},[]);
 	
-	return ( <section className="w-[100%] h-[375px] bg-[#f9f9f9] flex flex-col items-center justify-center md:h-[max-content] md:bg-white md:mt-[72px]">
+	return ( <section className="w-[100%] h-[375px] bg-[#f9f9f9] flex flex-col items-center justify-center md:h-[max-content] md:bg-white md:mt-[72px] md:max-w-[415px] md:overflow-hidden">
 		<img src={image} alt="" className="w-[295px] h-[349px] md:w-[426px] md:h-[426px]"></img>
 		<SelectionCarousel image={carouselImg}/>
 	</section> );
