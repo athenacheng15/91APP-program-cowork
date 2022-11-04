@@ -1,4 +1,3 @@
-import Blank from "../../../components/Blank";
 import RegRule from "../../../components/RegRule";
 import UpperTitle from "../../../components/UpperTitle";
 import Schedule from "./Schedule";
