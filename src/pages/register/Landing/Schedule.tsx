@@ -13,7 +13,7 @@ function Schedule() {
 	}
 	
 	const scheduleList=[{id:0,img:register,text:"1. 填寫登記資料"},{id:1,img:clock,text:"2. 等待審核驗證"},{id:2,img:confirm,text:"3. 確認驗證通過", color:"#ff6621"},{id:3,img:cart,text:"4. 開賣日購買"}];
-	return ( <section className="w-[95%] bg-white h-[max-content] flex flex-col items-between">
+	return ( <section className="w-[95%] bg-white h-[max-content] flex flex-col items-between md:max-w-[571px] md:h-[145px] md:w-[100%]">
 		<div className="mt-[9px] ml-[14px] text-[12px] font-[500] text-[#404259] self-start">活動流程 ：</div>
 		<div className="mt-[8px] flex justify-between ml-[9px] mr-[9px]">
 			{scheduleList.map((item:ScheduleListProps,index:number)=>(

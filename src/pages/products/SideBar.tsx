@@ -16,7 +16,7 @@ interface LinkGroupProps {
 	title: string;
 	content?: string[];
 }
-
+ 
 function LinkGroup({ title, content }: LinkGroupProps) {
 	const [linkVis, setLinkVis] = useState(false);
 	const [chevronVis, setChevronVis] = useState(true);
