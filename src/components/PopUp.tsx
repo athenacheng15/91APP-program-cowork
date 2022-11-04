@@ -9,7 +9,7 @@ function PopUp({title,content,buttonText,buttonFunction}:PopUpProps) {
 	return ( 
 		<>
 			<section className="w-[100%] h-[100%] bg-white opacity-0 fixed z-[2]"></section>
-			<section className="z-[2] bg-white fixed top-[45%] self-center w-[290px] h-[165px] rounded-md flex flex-col items-center justify-center">
+			<section className="z-[2] bg-white fixed top-[45%] self-center w-[290px] h-[165px] rounded-md flex flex-col items-center justify-center md:top-[40%] right-[41%]">
 				<div className="text-[16px] font-[500] my-[18.5px]">{title}</div>
 				<div className="text-[13px] mb-[30px]">{content}</div>
 				<div 

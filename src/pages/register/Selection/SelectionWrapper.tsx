@@ -8,17 +8,31 @@ import {registerData,priceChart} from "../../../data/registerData";
 import defaultPhoto from"../../../img/register/iPhone-images/pro-iphone-13-sky.png";
 import PopUp from "../../../components/PopUp";
 import BlankDiv from "../../../components/BlankDiv";
+import {
+	ChevronRightIcon,
+	ChevronLeftIcon
+} from "@primer/octicons-react";
 
 export default function Selection() {
 	const navigate = useNavigate();
-	const { regInfo,setRegInfo } = useContext(UserContext);
+	const { regInfo,setRegInfo,xOffSet,setXOffSet } = useContext(UserContext);
 	const[image,setImage]=useState<string>(defaultPhoto);	
 	const[navBack,setNavBack]=useState<boolean>(false);
 	const [title,setTitle]=useState<string>("Apple iPhone 13");
 	const [price,setPrice]=useState<string>("");
 	const [size,setSize]=useState<string>("");
+	const[carouselLength,setCarouselLength]=useState<number>();
+	const[lengthNow,setLengthNow]=useState<number>(5);
 
-
+	useEffect(()=>{
+		//取得Selection page輪播圖中的照片長度
+		//取得的意義是不想將停止translateX的數值寫死，希望在未來如新增照片也能動態操縱輪播圖停止的條件
+		if(registerData!==undefined){
+			const filtered=registerData.filter((item)=>item.type==="iPhone 13" || item.type==="iPhone 13 Pro");
+			const filteredIMG=filtered.map((item)=>item.imgUrl);
+			setCarouselLength(filteredIMG.length);
+		}
+	},[]);
 
 	useEffect(()=>{
 		//處理Gallery顯示的照片
@@ -68,23 +82,46 @@ export default function Selection() {
 
 	},[regInfo]);
 
-
-
 	function navigateBack(){
 		navigate("/register/reg");
 		window.scroll({top: 0, left: 0, behavior: "smooth" }); 
 	}
 
-	// function doNothing(){
-	// 	return;
-	// }
+	function forwardHandler(){
+		if(lengthNow!==carouselLength){
+			setXOffSet(xOffSet-89);
+			setLengthNow(lengthNow+1);
+		}else{	
+			return;
+		}
+	}
+
+	function backwardHandler(){
+		if(lengthNow===5){
+			return;
+		}else{
+			setXOffSet(xOffSet+89);
+			setLengthNow(lengthNow-1);
+		}
+	}
+
 
 	return (
 		<section className="h-[max-content] bg-[#fafafa] flex flex-col md:items-center md:min-h-[979px]">
 			<div className="hidden md:block my-[43px] text-[64px] font-[500]">選擇商品</div>
-			<div className="flex w-[100%] flex-col bg-white md:w-[75%] md:max-w-[1080px] md:flex-row">
+			<div className="relative flex w-[100%] flex-col bg-white md:w-[75%] md:max-w-[1080px] md:flex-row">
 				<Gallery image={image}/>
-				<div className="flex flex-col">
+				<div 
+					onClick={()=>backwardHandler()}
+					className={`${lengthNow===5? "hidden" :"block"} absolute bottom-[15%] left-[40px] hidden xl:block`}>
+					<ChevronLeftIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
+				</div>
+				<div 
+					onClick={()=>forwardHandler()}
+					className={`${lengthNow===carouselLength?"hidden":"block"} absolute bottom-[15%] left-[507px] hidden xl:block`}>
+					<ChevronRightIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
+				</div>
+				<div className="flex flex-col max-w-[100%] md:max-w-[376px] ml-0 md:ml-[89px]">
 					<TitlePrice title={title} price={price} />
 					<Selector />
 				</div>
