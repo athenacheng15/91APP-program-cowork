@@ -17,12 +17,12 @@ const dropDownList = [
 
 export default function Header() {
 	return (
-		<div className="w-[100%] h-[auto] min-h-[100px] bg-[#c89185]">
-			<div className="flex justify-between items-start  w-[1180px] h-[auto] m-[auto]">
-				<div className="w-[216px] h-[65px] bg-white mr-[2%] mt-[17.5px]">
+		<div className="h-[auto] min-h-[100px] w-[100%] bg-[#c89185]">
+			<div className="m-[auto] flex h-[auto]  w-[1180px] items-start justify-between">
+				<div className="mr-[2%] mt-[17.5px] h-[65px] w-[216px] bg-white">
 					<img src={logo} className="m-[auto]"></img>
 				</div>
-				<div className="flex flex-wrap w-[100%] h-[auto] max-w-[685px] text-[14px] grow mt-[67px]">
+				<div className="mt-[67px] flex h-[auto] w-[100%] max-w-[685px] grow flex-wrap text-[14px]">
 					{dropDownList.map((item) => (
 						<HeaderDropDown
 							key={item.name}
@@ -33,7 +33,7 @@ export default function Header() {
 				</div>
 				<div>
 					<div className="flex h-[50px] w-[285px] ">
-						<div className="flex items-center space-x-[10px] mr-6">
+						<div className="mr-6 flex items-center space-x-[10px]">
 							<button>
 								<img src={phone} />
 							</button>
@@ -42,7 +42,7 @@ export default function Header() {
 							</button>
 							<button className="flex">
 								<img src={cart} />
-								<div className="w-[32px] h-[16px] bg-[#ff5353] text-white text-xs rounded-full ml-[5px]">
+								<div className="ml-[5px] h-[16px] w-[32px] rounded-full bg-[#ff5353] text-xs text-white">
 									10
 								</div>
 							</button>
@@ -52,9 +52,9 @@ export default function Header() {
 							<HeaderSelector text="TWD" img={dollars} />
 						</div>
 					</div>
-					<div className="flex items-center justify-end h-[50px] w-[285px] relative">
+					<div className="relative flex h-[50px] w-[285px] items-center justify-end">
 						<input
-							className="w-[214px] h-[26px] px-3 text-xs rounded-full"
+							className="h-[26px] w-[214px] rounded-full px-3 text-xs"
 							placeholder="搜尋商品"
 						/>
 
@@ -73,9 +73,9 @@ interface HeaderDropDownProps {
 
 function HeaderDropDown({ text, dropDown }: HeaderDropDownProps) {
 	return (
-		<div className="flex w-[auto] h-[auto] items-end mr-5 mb-[17.5px]">
+		<div className="mr-5 mb-[17.5px] flex h-[auto] w-[auto] items-end">
 			<p className="mr-1">{text}</p>
-			<button className="flex items-center cursor-pointer">
+			<button className="flex cursor-pointer items-center">
 				<img src={chevron_s} className={`${dropDown ? "block" : "hidden"}`} />
 			</button>
 		</div>
@@ -89,10 +89,10 @@ interface HeaderSelectorProps {
 
 function HeaderSelector({ text, img }: HeaderSelectorProps) {
 	return (
-		<div className="flex items-center ">
-			<img className="w-[15px] h-[15px] mr-1" src={img} />
+		<button className="flex items-center ">
+			<img className="mr-1 h-[15px] w-[15px]" src={img} />
 			<p className="text-xs">{text}</p>
 			<img src={chevron_s} />
-		</div>
+		</button>
 	);
 }

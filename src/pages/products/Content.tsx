@@ -74,8 +74,11 @@ interface CardProps {
 function Card({ brand, name, imgUrl, originalPrice, price, mark }: CardProps) {
 	return (
 		<div className="flex h-[168px] w-[100%] border-b border-solid border-[#eee] py-5 pl-5 last:border-0">
+			<button
+				className={`${
+					mark ? "cursor-default" : "cursor-pointer"
+				} mr-[17px] flex h-[128px] w-[108px] items-center justify-center bg-cover bg-center`}
 			<div
-				className="mr-[17px] flex h-[128px] w-[108px] items-center justify-center bg-cover bg-center"
 				style={{ backgroundImage: `url(${imgUrl})` }}
 			>
 				<div
@@ -85,11 +88,20 @@ function Card({ brand, name, imgUrl, originalPrice, price, mark }: CardProps) {
 				>
 					<p>{mark}</p>
 				</div>
-			</div>
+			</button>
 			<div className="h-[128px] w-[190px] text-[14px]">
-				<p className="text-[#999]">{brand}</p>
-				<p className="mb-8">{name}</p>
-				<p className="text-xs text-[#999] line-through">NT${originalPrice}</p>
+				<button className="cursor-pointer text-[#999] hover:underline">
+					{brand}
+				</button>
+				<button
+					className={`mb-8 text-left ${
+						!mark && "cursor-pointer hover:underline"
+					}`}
+				>
+					{name}
+				</button>
+			</div>
+					<p className="text-xs text-[#999] line-through">NT${originalPrice}</p>
 				<div className="flex justify-between">
 					<p className="text-[16px] text-[#ff655d]">NT${price}</p>
 					<div className="flex space-x-3">
