@@ -78,7 +78,6 @@ function Card({ brand, name, imgUrl, originalPrice, price, mark }: CardProps) {
 				className={`${
 					mark ? "cursor-default" : "cursor-pointer"
 				} mr-[17px] flex h-[128px] w-[108px] items-center justify-center bg-cover bg-center`}
-			<div
 				style={{ backgroundImage: `url(${imgUrl})` }}
 			>
 				<div
@@ -89,6 +88,7 @@ function Card({ brand, name, imgUrl, originalPrice, price, mark }: CardProps) {
 					<p>{mark}</p>
 				</div>
 			</button>
+
 			<div className="h-[128px] w-[190px] text-[14px]">
 				<button className="cursor-pointer text-[#999] hover:underline">
 					{brand}
@@ -100,8 +100,7 @@ function Card({ brand, name, imgUrl, originalPrice, price, mark }: CardProps) {
 				>
 					{name}
 				</button>
-			</div>
-					<p className="text-xs text-[#999] line-through">NT${originalPrice}</p>
+				<p className="text-xs text-[#999] line-through">NT${originalPrice}</p>
 				<div className="flex justify-between">
 					<p className="text-[16px] text-[#ff655d]">NT${price}</p>
 					<div className="flex space-x-3">
