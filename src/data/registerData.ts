@@ -18,11 +18,6 @@ export type RegisterDataProps=({
     name: string;
     color?: undefined;
     type?: undefined;
-} | {
-    imgUrl: string;
-    name: string;
-    color: string;
-    type: string;
 })[]
 
 export const registerData = [{imgUrl: iphone13Catalog, name: "iPhone 13"},{imgUrl: iphone13Pink, name: "iPhone 13 粉紅色",color:"粉紅色",type:"iPhone 13"},{imgUrl: iphone13Blue, name: "iPhone 13 藍色",color:"藍色",type:"iPhone 13"},{imgUrl: iphone13Midnight, name: "iPhone 13 午夜色",color:"午夜色",type:"iPhone 13"},{imgUrl: iphone13Starlight, name: "iPhone 13 星光色",color:"星光色",type:"iPhone 13"},{imgUrl: iphone13Red, name: "iPhone 13 熱情紅",color:"熱情紅",type:"iPhone 13"},{imgUrl: iPhone13ProCatalog, name: "iPhone 13 Pro"},{imgUrl: iphone13ProSky, name: "iPhone 13 Pro 天峰藍",color:"天峰藍",type:"iPhone 13 Pro"},{imgUrl: iphone13ProGreen, name: "iPhone 13 Pro 湖水綠",color:"湖水綠",type:"iPhone 13 Pro"},{imgUrl: iphone13ProGold, name: "iPhone 13 Pro 金色",color:"金色",type:"iPhone 13 Pro"},{imgUrl: iphone13ProGraphite, name: "iPhone 13 Pro 石墨色",color:"石墨色",type:"iPhone 13 Pro"}];
