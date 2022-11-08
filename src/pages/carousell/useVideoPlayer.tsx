@@ -15,6 +15,10 @@ export default function useVideoPlayer(
 		isPlaying ? videoElement.current?.play() : videoElement.current?.pause();
 	}, [isPlaying, videoElement]);
 
+	function playVideo() {
+		setIsPlaying(true);
+	}
+
 	function pauseVideo() {
 		setIsPlaying(false);
 	}
@@ -45,6 +49,7 @@ export default function useVideoPlayer(
 		isMuted,
 		togglePlay,
 		pauseVideo,
+		playVideo,
 		handleOnTimeUpdate,
 		toggleMute,
 	};

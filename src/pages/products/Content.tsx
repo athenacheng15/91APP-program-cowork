@@ -23,7 +23,7 @@ export default function Content() {
 							type="products"
 							imageList={productsListForCarousell}
 							arrowBtn={<ArrowBtn />}
-							autoPlayTime={5000}
+							autoPlayTime={3000}
 							height={702}
 							width={528}
 							arrowBtnheight={335}
