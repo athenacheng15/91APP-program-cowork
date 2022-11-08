@@ -138,7 +138,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 				)}
 				{buttonText==="加入會員"&&(
 					<div className="flex items-center justify-center mt-[6px] w-[91%] md:mt-[10px]">
-						<span className="text-[#FF5353] text-[14px]">立刻加入會員，開賣通知不漏接！</span>
+						<span className="text-[#FF5353] text-[14px] md:text-[16px]">立刻加入會員，開賣通知不漏接！</span>
 					</div>
 				)}
 				<div className={`${regInfo.price===undefined&& "mt-[15px]"} mt-[15px] cursor-pointer mb-[10px] w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center`}>

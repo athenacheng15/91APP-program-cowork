@@ -38,7 +38,7 @@ function InputForm() {
 				</div>
 				
 			</div>
-			<div className="mt-[4p] h-[max-content] p-[12px] w-[90%] self-center bg-[#fffce6] flex items-center justify-center">
+			<div className="h-[max-content] p-[12px] w-[90%] self-center bg-[#fffce6] flex items-center justify-center mt-[8px] md:mt-[16px]">
 				<span className="text-[13px]">*登記手機號碼需與會員手機號碼相同，每人限登記乙支，此為預約聯繫憑證，您必須確認留存之資料均完整並正確，且確保手機可正常收發簡訊。</span>
 			</div>
 			<InputTitle text={"Email 信箱  (開賣日用此Email通知付款)"} />
