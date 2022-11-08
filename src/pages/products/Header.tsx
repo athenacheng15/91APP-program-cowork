@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import logo from "../../img/products/elements/logo.png";
 import chevron_s from "../../img/products/elements/chevron_s.png";
 import phone from "../../img/products/elements/icon01-phone.png";
@@ -16,12 +17,16 @@ const dropDownList = [
 ];
 
 export default function Header() {
+	const navigate = useNavigate();
 	return (
 		<div className="h-[auto] min-h-[100px] w-[100%] bg-[#c89185]">
-			<div className="m-[auto] flex h-[auto]  w-[1180px] items-start justify-between">
-				<div className="mr-[2%] mt-[17.5px] h-[65px] w-[216px] bg-white">
-					<img src={logo} className="m-[auto]"></img>
-				</div>
+			<div
+				className="m-[auto] flex h-[auto]  w-[1180px] items-start justify-between"
+				onClick={() => navigate("/")}
+			>
+				<button className="mr-[2%] mt-[17.5px] h-[65px] w-[216px] bg-white">
+					<img src={logo} className="m-[auto]" />
+				</button>
 				<div className="mt-[67px] flex h-[auto] w-[100%] max-w-[685px] grow flex-wrap text-[14px]">
 					{dropDownList.map((item) => (
 						<HeaderDropDown

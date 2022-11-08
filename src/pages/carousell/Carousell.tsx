@@ -36,7 +36,7 @@ export default function Carousell({
 	const currentOffsetXRef = useRef(0);
 	const startXRef = useRef(0);
 	const minOffsetXRef = useRef(0);
-	const { isPlaying, togglePlay, pauseVideo, handleOnTimeUpdate } =
+	const { isPlaying, togglePlay, pauseVideo, playVideo, handleOnTimeUpdate } =
 		useVideoPlayer(videoElement);
 
 	useEffect(() => {
@@ -66,6 +66,10 @@ export default function Carousell({
 		timerRef.current = setTimeout(() => {
 			sliding();
 		}, autoPlayTime);
+	}
+
+	if (isPlaying) {
+		clearTimeout(timerRef.current);
 	}
 
 	function handleTouchEnd() {
@@ -189,8 +193,8 @@ export default function Carousell({
 								<button
 									className="absolute top-[330px] left-[230px] rounded-full"
 									onClick={() => {
-										togglePlay();
 										clearTimeout(timerRef.current);
+										playVideo();
 									}}
 								>
 									<img
