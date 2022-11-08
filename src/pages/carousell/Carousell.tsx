@@ -29,7 +29,7 @@ export default function Carousell({
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [isSwiping, setIsSwiping] = useState(false);
 	const videoElement = useRef(null);
-	const timerRef = useRef<any>(null);
+	const timerRef = useRef<NodeJS.Timeout>();
 	const containerRef = useRef<HTMLDivElement>(null);
 	const containerWidthRef = useRef(0);
 	const [offsetX, setOffsetX, offsetXref] = useSwiperRef(0);
