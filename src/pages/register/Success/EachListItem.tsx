@@ -12,7 +12,7 @@ function EachListItem({info}:EachListItemProps) {
 			{info.map((item:any)=>
 				(
 
-					<section key={item.id} className="w-[100%] flex justify-between mb-[10px]">
+					<section key={item.id} className="w-[100%] flex justify-between mb-[10px] md:mb-[30px]">
 						{item.style==="bold" && item.right!==undefined  &&(
 							<>
 								<BoldText content={item.left} />

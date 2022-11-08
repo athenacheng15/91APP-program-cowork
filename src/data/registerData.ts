@@ -98,7 +98,7 @@ export const priceChart = [
 	{ type: "iPhone 13 Pro", size: "1TB", price: "50,400" },
 ];
 export const sizeList = [
-	{ name: "128GB" },
+	{ name: "128GB" },	
 	{ name: "256GB" },
 	{ name: "512GB" },
 	{ name: "1TB" },

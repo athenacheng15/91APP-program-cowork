@@ -48,11 +48,11 @@ function SuccessInfo() {
 	}
 
 	return ( <section className="bg-[#f0f0f0] h-[max-content] w-[100%] flex flex-col items-center">
-		<div className="w-[91%] flex flex-col">
+		<div className="w-[91%] flex flex-col max-w-[850px]">
 			<div className="mt-[21px] mb-[9px]">
 				<BoldText content="登記資訊如下：" />
 			</div>
-			<div className="w-[100%] bg-[#D8D8D8] h-[1px] mb-[15px]"></div>
+			<div className="w-[100%] bg-[#D8D8D8] h-[1px] mb-[15px] md:mb-[30px]"></div>
 			<EachListItem info={eachItems}/>
 			<div className="mt-[34px]"></div>
 			<EachListItem info={personalInfo}/>

@@ -4,16 +4,13 @@ import logo from "../../img/register/91Logo.png";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {UserContext} from "../../utili/useContext";
+import RegHeader from "../../components/RegHeader";
 
 export default function Register() {
 	const location = useLocation();
 	const[buttonText,setButtonText]=useState<string>("");
 	const[navLink,setNavLink]=useState<string>("/");
-	// const [cartItems, dispatch] = useReducer(reducer,[]);
-
-	// function reducer(){
-	// 	return;
-	// }
+	
 	useEffect(()=>{
 		switch(location.pathname){
 		case "/register":{
@@ -72,9 +69,7 @@ export default function Register() {
 	return (
 		<UserContext.Provider value={{ regInfo, setRegInfo,proPostInfo,setProPostInfo,xOffSet,setXOffSet }}>
 			<section className="w-[100%]">
-				<div className="h-[57px] bg-[#ff5455] flex items-center">
-					<img src={logo} alt="" className="w-[75px] h-[21px] ml-[20px] cursor-pointer"></img>
-				</div>
+				<RegHeader />
 				<Outlet />
 				<RegLowerButton buttonText={buttonText} navLink={navLink}/>
 			</section>
