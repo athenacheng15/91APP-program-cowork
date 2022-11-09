@@ -8,7 +8,7 @@ function RegHeader() {
 		<div className="h-[57px] bg-[#ff5455] flex items-center">
 			<img 
 				onClick={()=>navigate("/")}
-				src={logo} alt="" className="w-[75px] h-[21px] ml-[20px] cursor-pointer"></img>
+				src={logo} alt="" className="w-[75px] h-[21px] ml-[20px] cursor-pointer md:w-[90px] md:h-[28px] md:ml-[15%]"></img>
 		</div>
 	);
 }

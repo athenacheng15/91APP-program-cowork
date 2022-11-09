@@ -12,7 +12,7 @@ function EachListItem({info}:EachListItemProps) {
 			{info.map((item:any)=>
 				(
 
-					<section key={item.id} className="w-[100%] flex justify-between mb-[10px] md:mb-[30px]">
+					<section key={item.id} className="w-[100%] flex justify-between mb-[10px]">
 						{item.style==="bold" && item.right!==undefined  &&(
 							<>
 								<BoldText content={item.left} />
@@ -27,8 +27,8 @@ function EachListItem({info}:EachListItemProps) {
 						)}
 						{item.style==="normal" && (
 							<>
-								<div className="ml-[9px] text-[14px] text-[#333333] md:text-[24px]">{item.left}</div>
-								<div className={"text-[#333333] ml-[9px] text-[14px] font-[500] md:text-[24px]"}>{item.right}</div> 
+								<div className="ml-[9px] text-[14px] text-[#333333] md:text-[24px] md:mb-[15px]">{item.left}</div>
+								<div className={"text-[#333333] ml-[9px] text-[14px] font-[500] md:text-[24px] md:mb-[15px]"}>{item.right}</div> 
 							</>
 						)}
 						{item.style==="red" && (

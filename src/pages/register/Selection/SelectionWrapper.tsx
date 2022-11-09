@@ -129,7 +129,7 @@ export default function Selection() {
 			<div className="block md:hidden">
 				<BlankDiv />
 			</div>
-			{/* {navBack&&(<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>)} */}
+			{navBack&&(<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>)}
 		</section>
 
 

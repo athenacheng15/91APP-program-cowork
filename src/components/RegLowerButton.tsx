@@ -42,7 +42,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 				let emailValidation=false;
 				let checkBoxValidation=false;
 				//name
-				if(isChinese(regInfo.name) && regInfo.name.length<8 && regInfo.name.length!==0 && regInfo.name!=="WRONG"){
+				if(isChinese(regInfo.name) && regInfo.name.length<8 && regInfo.name.length!==0 && regInfo.name.length >1 && regInfo.name!=="WRONG"){
 					nameValidation=true;	
 				}else{
 					regInfo.name!=="WRONG" && setRegInfo({...regInfo,name:"WRONG"});
