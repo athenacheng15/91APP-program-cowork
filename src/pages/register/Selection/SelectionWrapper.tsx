@@ -63,9 +63,14 @@ export default function Selection() {
 		console.log(regInfo.name.length,"regInfo");
 		console.log(stored,"stored");
 
-		if(stored===undefined || stored===null){
-			setRefreshCount(refreshCount+1);
+		if(stored===undefined){
+			// setRefreshCount(refreshCount+1);
 			// refreshCount<=2 ? setNavBack(true) :setNavBack(false);
+			// setNavBack(true);
+			return;
+		}
+
+		if(stored===null){
 			setNavBack(true);
 			return;
 		}
@@ -74,7 +79,6 @@ export default function Selection() {
 		((stored.name.length===0 || stored.phone.length===0 || stored.email.length===0))
 		){
 			setNavBack(true);
-			console.log(true);
 			
 		}else{
 			setNavBack(false);
