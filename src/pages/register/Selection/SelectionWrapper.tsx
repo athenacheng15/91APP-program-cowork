@@ -23,6 +23,12 @@ export default function Selection() {
 	const [size,setSize]=useState<string>("");
 	const[carouselLength,setCarouselLength]=useState<number>();
 	const[lengthNow,setLengthNow]=useState<number>(5);
+	const[stored,setStored]=useState<any>();
+
+	useEffect(()=>{
+		const stored=localStorage.getItem("storedRegInfo");	
+		setStored(JSON.parse(stored as string));
+	},[]);
 
 	useEffect(()=>{
 		//取得Selection page輪播圖中的照片長度
@@ -52,10 +58,15 @@ export default function Selection() {
 
 	useEffect(()=>{
 		//如果未填寫基本資料即以輸入url進入本頁，顯示彈窗並引導回上一頁
-		if(regInfo.name.length===0 || regInfo.phone.length===0 || regInfo.email.length===0){
+		if((regInfo.name.length===0 || regInfo.phone.length===0 || regInfo.email.length===0)&&
+		(stored!==undefined && (stored.name.length===0 || stored.phone.length===0 || stored.email.length===0))
+		){
 			setNavBack(true);
+		}else{
+			setNavBack(false);
+
 		}
-	},[]);
+	},[regInfo,stored]);
 
 	function priceProcessor(){
 		const localPrice=priceChart.filter((item:any)=>item.type===regInfo.type && item.size === regInfo.size)[0].price;
@@ -138,9 +149,7 @@ export default function Selection() {
 			</div>
 			{navBack&&(
 				<>
-					{/* <div className="w-[100%] h-[100%] bg-black-rgba fixed z-[2]"> */}
 					<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>
-					{/* </div> */}
 				</>
 			)}
 			<div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>

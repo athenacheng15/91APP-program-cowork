@@ -24,6 +24,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		}
 		else if (buttonText==="選擇商品"){
 			setRegInfo(proPostInfo);
+			localStorage.setItem("storedRegInfo", JSON.stringify(proPostInfo));
 		}
 	},[validateCount]);
 
@@ -78,22 +79,23 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			
 		}},[regInfo]);
 
-	function postChecker(){
-		//檢查是否所有項目已經填寫再送出		
-		if(regInfo.type.length===0 || regInfo.color.length===0|| regInfo.size.length===0){
+	function postChecker(type:string){
+		//檢查是否所有項目已經填寫再送出
+		if(type!=="選擇商品"&&(regInfo.type.length===0 || regInfo.color.length===0|| regInfo.size.length===0)){
 			setShowPopUp(true);
 		}else{
 			localStorage.setItem("storedRegInfo", JSON.stringify(regInfo));
-			setRegInfo({
-				name:"",
-				phone:"",
-				email:"",
-				checked:null,
-				type:"",
-				color:"",
-				size:"",
-				price:""
-			});
+			// setRegInfo({
+			// 	name:"",
+			// 	phone:"",
+			// 	email:"",
+			// 	checked:null,
+			// 	type:"",
+			// 	color:"",
+			// 	size:"",
+			// 	price:""
+			// });
+			console.log(regInfo);
 			navigator();
 		}
 	}
@@ -118,17 +120,14 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 
 	return ( 
 		<>
-			{/* <div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
-				<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={popUpSetter}/></div>
-			<div className={`${showReg ? "fixed" : "hidden"} left-[30%]`}>
-				<PopUp title="已加入會員" content="點擊回到主頁" buttonText="回到主頁" buttonFunction={navToHome}/></div> */}
 			<section 
 				onClick={()=>{
 					if(buttonText!=="選擇商品" && buttonText!=="送出" && buttonText!=="加入會員"){
 						navigator();
 					}else{
 						setValidateCount(validateCount+2);
-						buttonText==="送出"&&postChecker();
+						buttonText==="送出"&&postChecker("送出");
+						buttonText==="選擇商品"&&postChecker("選擇商品");
 						buttonText==="加入會員"&&regMember();
 					}
 				}}
