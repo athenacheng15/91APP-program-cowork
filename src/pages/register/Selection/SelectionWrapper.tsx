@@ -105,6 +105,9 @@ export default function Selection() {
 		}
 	}
 
+	useEffect(()=>console.log(lengthNow,"lengthNow"),[lengthNow]);
+	useEffect(()=>console.log(carouselLength,"carouselLength"),[carouselLength]);
+
 
 	return (
 		<section className="h-[max-content] bg-[#fafafa] flex flex-col md:items-center md:min-h-[979px]">
@@ -113,12 +116,12 @@ export default function Selection() {
 				<Gallery image={image}/>
 				<div 
 					onClick={()=>backwardHandler()}
-					className={`${lengthNow===5? "hidden" :"block"} absolute bottom-[15%] left-[40px] hidden xl:block`}>
+					className={`${lengthNow===5? "hidden" :"xl:block"} absolute bottom-[15%] left-[40px] hidden`}>
 					<ChevronLeftIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
 				</div>
 				<div 
 					onClick={()=>forwardHandler()}
-					className={`${lengthNow===carouselLength?"hidden":"block"} absolute bottom-[15%] left-[507px] hidden xl:block`}>
+					className={`${lengthNow===carouselLength? "hidden":"xl:block"} absolute bottom-[15%] left-[507px] hidden`}>
 					<ChevronRightIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
 				</div>
 				<div className="flex flex-col max-w-[100%] md:max-w-[376px] ml-0 md:ml-[89px]">
