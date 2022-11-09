@@ -24,7 +24,7 @@ export default function SuccessWrapper() {
 		window.scroll({top: 0, left: 0, behavior: "smooth" }); 
 	}
 
-	useEffect(()=>console.log(showReg,"in wrapper"),[showReg]);
+
 
 	return (
 		// <section className="w-[100%] flex flex-col h-[max-content] md:bg-[#eeeeee]">

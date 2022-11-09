@@ -14,8 +14,12 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 	const navigate = useNavigate();
 	const { regInfo, setRegInfo,proPostInfo, setProPostInfo,setShowPopUp,showReg,setShowReg } = useContext(UserContext);
 	const[validateCount,setValidateCount]=useState<number>(0);
-	// const[showPopUp,setShowPopUp]=useState<boolean>(false);
-	// const[showReg,setShowReg]=useState<boolean>(false);
+	const[stored,setStored]=useState<any>();
+
+	// useEffect(()=>{
+	// 	const stored=localStorage.getItem("storedRegInfo");	
+	// 	setStored(JSON.parse(stored as string));
+	// },[]);
 
 	useEffect(()=>{
 		if(proPostInfo.checked===null){
@@ -27,6 +31,8 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			localStorage.setItem("storedRegInfo", JSON.stringify(proPostInfo));
 		}
 	},[validateCount]);
+
+	// useEffect(()=>localStorage.setItem("storedRegInfo", JSON.stringify(regInfi)),[regInfo]);
 
 
 
@@ -78,12 +84,40 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			
 		}},[regInfo]);
 
-	function postChecker(type:string){
+	useEffect(()=>console.log(regInfo,"regInfo"),[regInfo]);
+	useEffect(()=>console.log(stored,"stored"),[stored]);
+
+
+
+	useEffect(()=>{
+
+		if(stored===undefined || stored===null){
+			return;
+		}
+		if(buttonText==="送出"&&stored.post){
+			// setStored({...stored,post:false});
+			// console.log(stored);
+			localStorage.setItem("storedRegInfo", JSON.stringify(stored));
+			navigator();
+		}
+		// if(buttonText==="送出"&&!stored.post){
+			
+		// }
+	},[stored]);
+
+	useEffect(()=>{
+		const stored=localStorage.getItem("storedRegInfo");	
+		setStored(JSON.parse(stored as string));
+	},[buttonText]);
+
+	function postChecker(){
 		//檢查是否所有項目已經填寫再送出
-		if(type!=="選擇商品"&&(regInfo.type.length===0 || regInfo.color.length===0|| regInfo.size.length===0)){
+		if(regInfo.type.length===0 || regInfo.color.length===0|| regInfo.size.length===0){
 			setShowPopUp(true);
 		}else{
-			// localStorage.setItem("storedRegInfo", JSON.stringify(regInfo));
+			console.log("add to store");
+			setStored({...stored,type:regInfo.type,color:regInfo.color,
+				size:regInfo.size,price:regInfo.price,post:true});
 			// setRegInfo({
 			// 	name:"",
 			// 	phone:"",
@@ -108,7 +142,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		setShowReg(true);
 	}
 
-	useEffect(()=>console.log(showReg,"in reg lower"),[showReg]);
+
 
 
 
@@ -125,8 +159,8 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 						navigator();
 					}else{
 						setValidateCount(validateCount+2);
-						buttonText==="送出"&&postChecker("送出");
-						buttonText==="選擇商品"&&postChecker("選擇商品");
+						buttonText==="送出"&&postChecker();
+						// buttonText==="選擇商品"&&postChecker("選擇商品");
 						buttonText==="加入會員"&&regMember();
 					}
 				}}

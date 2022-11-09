@@ -24,7 +24,6 @@ export default function Selection() {
 	const[carouselLength,setCarouselLength]=useState<number>();
 	const[lengthNow,setLengthNow]=useState<number>(5);
 	const[stored,setStored]=useState<any>();
-	const[refreshCount,setRefreshCount]=useState<number>(0);
 
 	useEffect(()=>{
 		const stored=localStorage.getItem("storedRegInfo");	
@@ -60,8 +59,8 @@ export default function Selection() {
 	useEffect(()=>{
 		//如果未填寫基本資料即以輸入url進入本頁，顯示彈窗並引導回上一頁
 		//分享Selection網頁給其他人時，如果localStorage沒有資料，也會導回上一頁
-		console.log(regInfo.name.length,"regInfo");
-		console.log(stored,"stored");
+
+
 
 		if(stored===undefined){
 			// setRefreshCount(refreshCount+1);

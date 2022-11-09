@@ -30,7 +30,7 @@ function SuccessInfo({navBack,setNavBack}:any) {
 
 	// },[stored]);
 
-	useEffect(()=>console.log(navBack),[navBack]);
+
 
 
 	useEffect(()=>{
@@ -43,7 +43,7 @@ function SuccessInfo({navBack,setNavBack}:any) {
 			setNavBack(true);
 			return;
 		}
-		console.log(stored);
+
 		
 
 
