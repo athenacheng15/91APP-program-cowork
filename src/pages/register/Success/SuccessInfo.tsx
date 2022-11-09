@@ -5,13 +5,13 @@ import { useNavigate } from "react-router-dom";
 import BoldText from "./BoldText";
 import EachListItem from "./EachListItem";
 
-function SuccessInfo() {
+function SuccessInfo({navBack,setNavBack}:any) {
 	const navigate = useNavigate();
 	const[stored,setStored]=useState<any>();
 	//改進：any
 	const[eachItems,setEachItems]=useState<any>();
 	const[personalInfo,setPersonalInfo]=useState<any>();
-	const[navBack,setNavBack]=useState<boolean>(false);
+	// const[navBack,setNavBack]=useState<boolean>(false);
 
 
 	useEffect(()=>{

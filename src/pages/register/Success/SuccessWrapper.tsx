@@ -4,14 +4,14 @@ import RegRule from "../../../components/RegRule";
 import SuccessHeader from "./SuccessHeader";
 import SuccessInfo from "./SuccessInfo";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../utili/useContext";
 
 
 export default function SuccessWrapper() {
 	const navigate = useNavigate();
 	const { showReg,setShowReg } = useContext(UserContext);
-	// const[navBack,setNavBack]=useState<boolean>(false);
+	const[navBack,setNavBack]=useState<boolean>(false);
 
 	function navigateBack(){
 		navigate("/register/reg");
@@ -29,10 +29,16 @@ export default function SuccessWrapper() {
 	return (
 		// <section className="w-[100%] flex flex-col h-[max-content] md:bg-[#eeeeee]">
 		<>
-			<PopUp title="個人資料有誤" content="個人資料尚未登記，請回到登記頁填寫" buttonText="回登記頁" buttonFunction={navigateBack}/>
-			<section className="h-[max-content] bg-[#fafafa] flex flex-col md:items-center md:min-h-[979px]">	
+			{navBack&&(
+				<>
+					<PopUp title="個人資料有誤" content="個人資料尚未登記，請回到登記頁填寫" buttonText="回登記頁" buttonFunction={navigateBack}/>
+				</>
+			)}			<section className="h-[max-content] bg-[#fafafa] flex flex-col md:items-center md:min-h-[979px]">	
 				<SuccessHeader />
-				<SuccessInfo />
+				<SuccessInfo 
+					navBack={navBack}
+					setNavBack={setNavBack}
+				/>
 				<div className="md:mt-[40px] flex justify-center">
 					<RegRule />
 				</div>
