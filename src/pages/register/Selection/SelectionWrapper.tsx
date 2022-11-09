@@ -15,7 +15,7 @@ import {
 
 export default function Selection() {
 	const navigate = useNavigate();
-	const { regInfo,setRegInfo,xOffSet,setXOffSet } = useContext(UserContext);
+	const { regInfo,setRegInfo,xOffSet,setXOffSet,showPopUp,setShowPopUp,showReg,setShowReg } = useContext(UserContext);
 	const[image,setImage]=useState<string>(defaultPhoto);	
 	const[navBack,setNavBack]=useState<boolean>(false);
 	const [title,setTitle]=useState<string>("Apple iPhone 13");
@@ -105,6 +105,13 @@ export default function Selection() {
 		}
 	}
 
+	function popUpSetter(){
+		setShowPopUp(false);
+	}
+
+
+
+
 
 	return (
 		<section className="h-[max-content] bg-[#fafafa] flex flex-col md:items-center md:min-h-[979px]">
@@ -129,7 +136,19 @@ export default function Selection() {
 			<div className="block md:hidden">
 				<BlankDiv />
 			</div>
-			{navBack&&(<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>)}
+			{navBack&&(
+				<>
+					{/* <div className="w-[100%] h-[100%] bg-black-rgba fixed z-[2]"> */}
+					<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>
+					{/* </div> */}
+				</>
+			)}
+			<div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
+				<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={popUpSetter}/>
+			</div>
+			{/* <div className={`${showReg ? "fixed" : "hidden"} left-[30%]`}>
+				<PopUp title="已加入會員" content="點擊回到主頁" buttonText="回到主頁" buttonFunction={navToHome}/></div> */}
+
 		</section>
 
 

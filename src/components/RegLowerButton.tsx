@@ -12,10 +12,10 @@ type RegLowerProps={
 
 function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 	const navigate = useNavigate();
-	const { regInfo, setRegInfo,proPostInfo, setProPostInfo } = useContext(UserContext);
+	const { regInfo, setRegInfo,proPostInfo, setProPostInfo,setShowPopUp,showReg,setShowReg } = useContext(UserContext);
 	const[validateCount,setValidateCount]=useState<number>(0);
-	const[showPopUp,setShowPopUp]=useState<boolean>(false);
-	const[showReg,setShowReg]=useState<boolean>(false);
+	// const[showPopUp,setShowPopUp]=useState<boolean>(false);
+	// const[showReg,setShowReg]=useState<boolean>(false);
 
 	useEffect(()=>{
 		if(proPostInfo.checked===null){
@@ -97,9 +97,6 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			navigator();
 		}
 	}
-	function popUpSetter(){
-		setShowPopUp(false);
-	}
 
 	function navigator(){
 		navigate(navLink);
@@ -110,12 +107,10 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		setShowReg(true);
 	}
 
-	function navToHome(){
-		navigate("/register");
-		setShowReg(false);
-		window.scroll({top: 0, left: 0, behavior: "smooth" }); 
-	}
-		
+	useEffect(()=>console.log(showReg,"in reg lower"),[showReg]);
+
+
+
 
 	if(buttonText.length===0){
 		return<></>;
@@ -123,10 +118,10 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 
 	return ( 
 		<>
-			<div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
+			{/* <div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
 				<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={popUpSetter}/></div>
 			<div className={`${showReg ? "fixed" : "hidden"} left-[30%]`}>
-				<PopUp title="已加入會員" content="點擊回到主頁" buttonText="回到主頁" buttonFunction={navToHome}/></div>
+				<PopUp title="已加入會員" content="點擊回到主頁" buttonText="回到主頁" buttonFunction={navToHome}/></div> */}
 			<section 
 				onClick={()=>{
 					if(buttonText!=="選擇商品" && buttonText!=="送出" && buttonText!=="加入會員"){
