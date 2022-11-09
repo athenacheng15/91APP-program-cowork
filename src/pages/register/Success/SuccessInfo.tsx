@@ -1,13 +1,17 @@
 import { useContext, useEffect, useState } from "react";
+import PopUp from "../../../components/PopUp";
 import { UserContext } from "../../../utili/useContext";
+import { useNavigate } from "react-router-dom";
 import BoldText from "./BoldText";
 import EachListItem from "./EachListItem";
 
 function SuccessInfo() {
+	const navigate = useNavigate();
 	const[stored,setStored]=useState<any>();
 	//改進：any
 	const[eachItems,setEachItems]=useState<any>();
 	const[personalInfo,setPersonalInfo]=useState<any>();
+	const[navBack,setNavBack]=useState<boolean>(false);
 
 
 	useEffect(()=>{
@@ -16,9 +20,26 @@ function SuccessInfo() {
 		setStored(JSON.parse(stored as string));
 	},[]);
 
+	// useEffect(()=>{
+	// 	//如果未填寫基本資料即以輸入url進入本頁，顯示彈窗並引導回上一頁
+	// 	//分享Selection網頁給其他人時，如果localStorage沒有資料，也會導回上一頁
+	// 	if(stored===undefined || stored===null){
+	// 		setNavBack(true);
+	// 		return;
+	// 	}
+
+	// },[stored]);
+
+	useEffect(()=>console.log(navBack),[navBack]);
+
+
 	useEffect(()=>{
 		//取得localStorage裡的個人及訂購資訊，以避免在reload之後資訊會不見
-		if(stored!==undefined){
+		if(stored===undefined || stored===null){
+			setNavBack(true);
+			return;
+		}
+		if(stored!==undefined || stored!==null){
 			const eachItems=[{id:0,left:"登記狀態",right:"驗證通過",style:"bold"},
 				{id:1,left:"商品資訊",style:"bold"},
 				{id:2,left:"商品",right:stored.type,style:"normal"},
@@ -39,11 +60,16 @@ function SuccessInfo() {
 
 	const { regInfo } = useContext(UserContext);
 	
-
+	function navigateBack(){
+		navigate("/register/reg");
+		window.scroll({top: 0, left: 0, behavior: "smooth" }); 
+	}
 	
 
 	if(eachItems===undefined || personalInfo===undefined){
-		return<></>;
+		return(
+			<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>
+		);
 	}
 
 	return ( <section className="bg-[#f0f0f0] h-[max-content] w-[100%] flex flex-col items-center">
@@ -56,6 +82,11 @@ function SuccessInfo() {
 			<div className="mt-[34px]"></div>
 			<EachListItem info={personalInfo}/>
 		</div>
+		{/* {navBack&&(
+			<>
+				<PopUp title="個人資料有誤" content="個人資料尚未登記，請回到登記頁填寫" buttonText="回登記頁" buttonFunction={navigateBack}/>
+			</>
+		)} */}
 	</section> );
 }
 // 改進：手機post了之後會更改database，不能再用同一隻手機申請
