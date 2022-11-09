@@ -58,15 +58,25 @@ export default function Selection() {
 
 	useEffect(()=>{
 		//如果未填寫基本資料即以輸入url進入本頁，顯示彈窗並引導回上一頁
-		if((regInfo.name.length===0 || regInfo.phone.length===0 || regInfo.email.length===0)&&
-		(stored!==undefined && (stored.name.length===0 || stored.phone.length===0 || stored.email.length===0))
-		){
+		//分享Selection網頁給其他人時，如果localStorage沒有資料，也會導回上一頁
+		console.log(regInfo,"regInfo");
+		console.log(stored,"stored");
+
+		if(stored===undefined || stored===null){
+			setNavBack(true);
+			return;
+		}
+
+		if((regInfo.name.length===0 || regInfo.phone.length===0 || regInfo.email.length===0
+			&&
+				(stored!==undefined && (stored.name.length===0 || stored.phone.length===0 || stored.email.length===0))
+		)){
 			setNavBack(true);
 		}else{
 			setNavBack(false);
-
 		}
 	},[regInfo,stored]);
+
 
 	function priceProcessor(){
 		const localPrice=priceChart.filter((item:any)=>item.type===regInfo.type && item.size === regInfo.size)[0].price;
