@@ -70,10 +70,9 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 				
 				//all validation pass, start navigate
 				if(nameValidation && phoneValidation && emailValidation && checkBoxValidation){
+					localStorage.setItem("storedRegInfo", JSON.stringify(regInfo));
 					navigate(navLink);
 					window.scroll({top: 0, left: 0, behavior: "smooth" }); 
-
-					
 				}
 			}
 			
@@ -84,7 +83,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		if(type!=="選擇商品"&&(regInfo.type.length===0 || regInfo.color.length===0|| regInfo.size.length===0)){
 			setShowPopUp(true);
 		}else{
-			localStorage.setItem("storedRegInfo", JSON.stringify(regInfo));
+			// localStorage.setItem("storedRegInfo", JSON.stringify(regInfo));
 			// setRegInfo({
 			// 	name:"",
 			// 	phone:"",
@@ -95,8 +94,8 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			// 	size:"",
 			// 	price:""
 			// });
-			console.log(regInfo);
-			navigator();
+			// console.log(regInfo);
+			// navigator();
 		}
 	}
 
