@@ -56,7 +56,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 
 				//email
 				const re = /\S+@\S+\.\S+/;
-				if(re.test(regInfo.email) || regInfo.email.length!==0){
+				if(re.test(regInfo.email) && regInfo.email.length!==0){
 					emailValidation=true;
 				}else{
 					regInfo.email!=="WRONG" && setRegInfo({...regInfo,email:"WRONG"});
@@ -66,11 +66,13 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 				if(regInfo.checked){
 					checkBoxValidation=true;
 				}
-
+				
 				//all validation pass, start navigate
 				if(nameValidation && phoneValidation && emailValidation && checkBoxValidation){
 					navigate(navLink);
 					window.scroll({top: 0, left: 0, behavior: "smooth" }); 
+
+					
 				}
 			}
 			
@@ -82,6 +84,16 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			setShowPopUp(true);
 		}else{
 			localStorage.setItem("storedRegInfo", JSON.stringify(regInfo));
+			setRegInfo({
+				name:"",
+				phone:"",
+				email:"",
+				checked:null,
+				type:"",
+				color:"",
+				size:"",
+				price:""
+			});
 			navigator();
 		}
 	}
@@ -118,8 +130,6 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			<section 
 				onClick={()=>{
 					if(buttonText!=="選擇商品" && buttonText!=="送出" && buttonText!=="加入會員"){
-						// navigate(navLink);
-						// window.scroll({top: 0, left: 0, behavior: "smooth" }); 
 						navigator();
 					}else{
 						setValidateCount(validateCount+2);
