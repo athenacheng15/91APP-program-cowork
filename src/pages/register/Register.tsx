@@ -44,10 +44,10 @@ export default function Register() {
 		phone:"",
 		email:"",
 		checked:null,
-		type:"iPhone 13",
-		color:"藍色",
-		size:"128GB",
-		price:"28,600"
+		type:"",
+		color:"",
+		size:"",
+		price:""
 	});
 
 	const [proPostInfo, setProPostInfo] = useState({
@@ -74,6 +74,6 @@ export default function Register() {
 				<RegLowerButton buttonText={buttonText} navLink={navLink}/>
 			</section>
 		</UserContext.Provider>
-
+	// 改進：react helmet 
 	);
 }

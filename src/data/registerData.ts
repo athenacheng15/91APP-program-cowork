@@ -19,6 +19,37 @@ export type RegisterDataProps = {
 }[];
 
 export const registerData = [
+	{ imgUrl: iphone13Catalog, name: "iPhone 13 mini" },
+	{
+		imgUrl: iphone13Pink,
+		name: "iPhone 13 mini 粉紅色",
+		color: "粉紅色",
+		type: "iPhone 13 mini",
+	},
+	{
+		imgUrl: iphone13Blue,
+		name: "iPhone 13 mini 藍色",
+		color: "藍色",
+		type: "iPhone 13 mini",
+	},
+	{
+		imgUrl: iphone13Midnight,
+		name: "iPhone 13 mini 午夜色",
+		color: "午夜色",
+		type: "iPhone 13 mini",
+	},
+	{
+		imgUrl: iphone13Starlight,
+		name: "iPhone 13 mini 星光色",
+		color: "星光色",
+		type: "iPhone 13 mini",
+	},
+	{
+		imgUrl: iphone13Red,
+		name: "iPhone 13 mini 熱情紅",
+		color: "熱情紅",
+		type: "iPhone 13 mini",
+	},
 	{ imgUrl: iphone13Catalog, name: "iPhone 13" },
 	{
 		imgUrl: iphone13Pink,
@@ -75,6 +106,31 @@ export const registerData = [
 		color: "石墨色",
 		type: "iPhone 13 Pro",
 	},
+	{ imgUrl: iPhone13ProCatalog, name: "iPhone 13 Pro Max" },
+	{
+		imgUrl: iphone13ProSky,
+		name: "iPhone 13 Pro Max 天峰藍",
+		color: "天峰藍",
+		type: "iPhone 13 Pro Max",
+	},
+	{
+		imgUrl: iphone13ProGreen,
+		name: "iPhone 13 Pro Max 湖水綠",
+		color: "湖水綠",
+		type: "iPhone 13 Pro Max",
+	},
+	{
+		imgUrl: iphone13ProGold,
+		name: "iPhone 13 Pro Max 金色",
+		color: "金色",
+		type: "iPhone 13 Pro Max",
+	},
+	{
+		imgUrl: iphone13ProGraphite,
+		name: "iPhone 13 Pro Max 石墨色",
+		color: "石墨色",
+		type: "iPhone 13 Pro Max",
+	},
 ];
 // add stock later
 export const iPhoneColorList = [
@@ -89,6 +145,9 @@ export const iPhoneColorList = [
 	{ name: "石墨色", color: "#585755" },
 ];
 export const priceChart = [
+	{ type: "iPhone 13 mini", size: "128GB", price: "22,900" },
+	{ type: "iPhone 13 mini", size: "256GB", price: "26,400" },
+	{ type: "iPhone 13 mini", size: "512GB", price: "33,400" },
 	{ type: "iPhone 13", size: "128GB", price: "25,900" },
 	{ type: "iPhone 13", size: "256GB", price: "29,400" },
 	{ type: "iPhone 13", size: "512GB", price: "36,400" },
@@ -96,6 +155,10 @@ export const priceChart = [
 	{ type: "iPhone 13 Pro", size: "256GB", price: "36,400" },
 	{ type: "iPhone 13 Pro", size: "512GB", price: "43,400" },
 	{ type: "iPhone 13 Pro", size: "1TB", price: "50,400" },
+	{ type: "iPhone 13 Pro Max", size: "128GB", price: "36,900" },
+	{ type: "iPhone 13 Pro Max", size: "256GB", price: "40,400" },
+	{ type: "iPhone 13 Pro Max", size: "512GB", price: "47,400" },
+	{ type: "iPhone 13 Pro Max", size: "1TB", price: "54,400" },
 ];
 export const sizeList = [
 	{ name: "128GB" },	
@@ -103,7 +166,7 @@ export const sizeList = [
 	{ name: "512GB" },
 	{ name: "1TB" },
 ];
-export const typeList = [{ name: "iPhone 13" }, { name: "iPhone 13 Pro" }];
+export const typeList = [{ name: "iPhone 13 mini" },{ name: "iPhone 13" }, { name: "iPhone 13 Pro" }, { name: "iPhone 13 Pro Max" }];
 
 export const registerCarousellData = [
 	{ id: 0, img: iphone13Catalog, fileType: "img" },

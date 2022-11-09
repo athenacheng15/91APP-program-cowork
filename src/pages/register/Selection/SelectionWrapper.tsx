@@ -130,8 +130,6 @@ export default function Selection() {
 				<BlankDiv />
 			</div>
 			{/* {navBack&&(<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>)} */}
-			{/* 改進：之後記得將註解去除 */}
-			{/* {regInfo.type===undefined || regInfo.color===undefined|| regInfo.size===undefined && (<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={doNothing}/>)} ) */}
 		</section>
 
 
