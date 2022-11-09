@@ -36,7 +36,6 @@ function SuccessInfo() {
 		}
 	},[stored]);
 
-	useEffect(()=>console.log(eachItems,"eachitem"),[eachItems]);
 
 	const { regInfo } = useContext(UserContext);
 	
