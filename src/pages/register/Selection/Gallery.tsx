@@ -29,7 +29,7 @@ function Gallery({image}:GalleryProps) {
 	
 	return ( <section className="w-[100%] h-[375px] bg-[#f9f9f9] flex flex-col items-center justify-center md:h-[max-content] md:bg-white md:mt-[72px] md:max-w-[415px] md:overflow-hidden relative md:ml-[81px] min-w-[0] xl:min-w-[426px]">
 		<div className={`${catalog ? "bg-white" : "bg-[#f0f0f0]"} w-[426px] h-[426px] flex items-center justify-center`}>
-			<img src={image} alt="" className={`${catalog ? "w-[426px]" : "w-[295px]"} ${catalog ? "h-[426px]" : "h-[349px]"}`}></img>
+			<img src={image} alt="" className={`${catalog ? "w-[298px]" : "w-[295px]"} ${catalog ? "h-[345px]" : "h-[349px]"} ${catalog ? "md:w-[333px]" : "w-[295px]"} ${catalog ? "h-[426px]" : "h-[349px]"}`}></img>
 		</div>
 		<SelectionCarousel image={carouselImg}/>
 	</section> );

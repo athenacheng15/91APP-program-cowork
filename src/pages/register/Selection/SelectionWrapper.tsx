@@ -105,9 +105,6 @@ export default function Selection() {
 		}
 	}
 
-	useEffect(()=>console.log(lengthNow,"lengthNow"),[lengthNow]);
-	useEffect(()=>console.log(carouselLength,"carouselLength"),[carouselLength]);
-
 
 	return (
 		<section className="h-[max-content] bg-[#fafafa] flex flex-col md:items-center md:min-h-[979px]">
