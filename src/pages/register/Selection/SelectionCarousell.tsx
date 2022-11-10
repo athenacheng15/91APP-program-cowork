@@ -41,7 +41,7 @@ function SelectionCarousel({image}:any) {
 				{image.map((item:any)=>(
 					<>
 						<img 
-							onClick={()=>setRegInfo({...regInfo,type:item.type,color:item.color})}
+							onClick={()=>setRegInfo({...regInfo,type:item.type,color:item.color,size:"",price:""})}
 							key={item} src={item.imgUrl} alt="" className={"w-[83px] h-[83px] bg-[#f0f0f0] mr-[3px] cursor-pointer"}></img>
 					
 					</>
