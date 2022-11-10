@@ -31,7 +31,6 @@ function EachSelector({info,localType}:EachSelectorProps) {
 					onClick={()=>{
 						setClickName(item.name);
 						setRegInfo({...regInfo,[localType]:item.name});
-
 						if(regInfo.type.length!==0 && localType==="type"){
 							setRegInfo({...regInfo,type:item.name, color:"", size:""});
 						}
