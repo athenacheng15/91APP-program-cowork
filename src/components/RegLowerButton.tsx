@@ -115,7 +115,6 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		if(regInfo.type.length===0 || regInfo.color.length===0|| regInfo.size.length===0){
 			setShowPopUp(true);
 		}else{
-			console.log("add to store");
 			setStored({...stored,type:regInfo.type,color:regInfo.color,
 				size:regInfo.size,price:regInfo.price,post:true});
 			// setRegInfo({

@@ -7,17 +7,22 @@ type GalleryProps={
     image:string;
 }
 
+
 function Gallery({image}:GalleryProps) {
-	const[carouselImg,setCarouselImg]=useState<string[] | undefined>();
+	const[carouselImg,setCarouselImg]=useState<any>();
 	const[catalog,setCatalog]=useState<boolean>(false);
 
 	useEffect(()=>{
 		if(registerData!==undefined){
 			const filtered=registerData.filter((item)=>item.type==="iPhone 13" || item.type==="iPhone 13 Pro");
-			const filteredIMG=filtered.map((item)=>item.imgUrl);
+			console.log(filtered);
+			
+			const filteredIMG=filtered.map((item)=>item);
 			setCarouselImg(filteredIMG);
 		}
 	},[]);
+
+	// useEffect(()=>console.log(carouselImg),[carouselImg]);
 
 	useEffect(()=>{
 		if (image==="/static/media/iPhone13Catalog.d0fc53cee302ad11db09.png" || image ==="/static/media/iPhone13ProCatalog.69de892200276bacd586.png"){
