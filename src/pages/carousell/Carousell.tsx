@@ -242,16 +242,16 @@ export default function Carousell({
 				</div>
 			</div>
 
-			<div className=" flex justify-center space-x-[10px] md:mt-3">
+			<div className="flex justify-center space-x-[10px] md:mt-3">
 				{imageList.map((image, index) => (
 					<button
 						key={image.id}
 						className={`${
 							type === "products"
-								? `h-2 w-2 rounded-full  ${
+								? `z-10 h-2 w-2 rounded-full  ${
 										index === currentSlide ? "bg-[#4b4e5b]" : "bg-[#d8d9d8]"
 								  }`
-								: `mt-[-10px] h-3 w-3 rounded-full border border-solid border-[#d2d2d2] ${
+								: `z-10 mt-[-10px] h-3 w-3 rounded-full border border-solid border-[#d2d2d2] ${
 										index === currentSlide ? "bg-[#d9d9d9]" : "bg-[#fff]"
 								  }`
 						} cursor-pointer `}

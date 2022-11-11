@@ -14,6 +14,10 @@ const dropDownList = [
 	{ name: "Crayon Shinchan 15% off", dropDown: false },
 	{ name: "Best Sellers", dropDown: false },
 	{ name: "Our Videos", dropDown: false },
+	{ name: "Latest Promotions", dropDown: true },
+	{ name: "Crayon Shinchan 15% off", dropDown: false },
+	{ name: "Best Sellers", dropDown: false },
+	{ name: "Our Videos", dropDown: false },
 ];
 
 export default function Header() {
@@ -78,12 +82,12 @@ interface HeaderDropDownProps {
 
 function HeaderDropDown({ text, dropDown }: HeaderDropDownProps) {
 	return (
-		<div className="mr-5 mb-[17.5px] flex h-[auto] w-[auto] items-end">
+		<button className="mr-5 mb-[17.5px] flex h-[auto] w-[auto] cursor-pointer items-end">
 			<p className="mr-1">{text}</p>
 			<button className="flex cursor-pointer items-center">
 				<img src={chevron_s} className={`${dropDown ? "block" : "hidden"}`} />
 			</button>
-		</div>
+		</button>
 	);
 }
 

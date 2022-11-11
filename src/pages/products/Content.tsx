@@ -95,7 +95,7 @@ function Card({ brand, name, imgUrl, originalPrice, price, mark }: CardProps) {
 				</button>
 				<button
 					className={`mb-8 text-left ${
-						!mark && "cursor-pointer hover:underline"
+						mark ? "cursor-default" : "cursor-pointer hover:underline"
 					}`}
 				>
 					{name}
