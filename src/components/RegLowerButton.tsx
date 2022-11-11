@@ -12,14 +12,11 @@ type RegLowerProps={
 
 function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 	const navigate = useNavigate();
-	const { regInfo, setRegInfo,proPostInfo, setProPostInfo,setShowPopUp,showReg,setShowReg } = useContext(UserContext);
+	const { regInfo, setRegInfo,proPostInfo, setProPostInfo,setShowPopUp,setShowReg } = useContext(UserContext);
 	const[validateCount,setValidateCount]=useState<number>(0);
 	const[stored,setStored]=useState<any>();
 
-	// useEffect(()=>{
-	// 	const stored=localStorage.getItem("storedRegInfo");	
-	// 	setStored(JSON.parse(stored as string));
-	// },[]);
+
 
 	useEffect(()=>{
 		if(proPostInfo.checked===null){
@@ -32,7 +29,6 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		}
 	},[validateCount]);
 
-	// useEffect(()=>localStorage.setItem("storedRegInfo", JSON.stringify(regInfi)),[regInfo]);
 
 
 
@@ -84,10 +80,6 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			
 		}},[regInfo]);
 
-	useEffect(()=>console.log(regInfo,"regInfo"),[regInfo]);
-	useEffect(()=>console.log(stored,"stored"),[stored]);
-
-
 
 	useEffect(()=>{
 
@@ -95,14 +87,9 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			return;
 		}
 		if(buttonText==="送出"&&stored.post){
-			// setStored({...stored,post:false});
-			// console.log(stored);
 			localStorage.setItem("storedRegInfo", JSON.stringify(stored));
 			navigator();
 		}
-		// if(buttonText==="送出"&&!stored.post){
-			
-		// }
 	},[stored]);
 
 	useEffect(()=>{
@@ -117,18 +104,6 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		}else{
 			setStored({...stored,type:regInfo.type,color:regInfo.color,
 				size:regInfo.size,price:regInfo.price,post:true});
-			// setRegInfo({
-			// 	name:"",
-			// 	phone:"",
-			// 	email:"",
-			// 	checked:null,
-			// 	type:"",
-			// 	color:"",
-			// 	size:"",
-			// 	price:""
-			// });
-			// console.log(regInfo);
-			// navigator();
 		}
 	}
 

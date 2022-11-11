@@ -51,7 +51,6 @@ export default function Register() {
 	});
 
 	const [proPostInfo, setProPostInfo] = useState({
-		//避免lower button的useEffect在onchange的時候被觸發
 		name:"",
 		phone:"",
 		email:"",

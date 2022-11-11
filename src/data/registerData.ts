@@ -25,30 +25,39 @@ export const registerData = [
 		name: "iPhone 13 mini 粉紅色",
 		color: "粉紅色",
 		type: "iPhone 13 mini",
+		stock:{"128GB":0,"256GB":0,"512GB":1}
 	},
 	{
 		imgUrl: iphone13Blue,
 		name: "iPhone 13 mini 藍色",
 		color: "藍色",
 		type: "iPhone 13 mini",
+		stock:{"128GB":0,"256GB":0,"512GB":0}
 	},
 	{
 		imgUrl: iphone13Midnight,
 		name: "iPhone 13 mini 午夜色",
 		color: "午夜色",
 		type: "iPhone 13 mini",
+		stock:{"128GB":1,"256GB":1,"512GB":1}
+
+		
 	},
 	{
 		imgUrl: iphone13Starlight,
 		name: "iPhone 13 mini 星光色",
 		color: "星光色",
 		type: "iPhone 13 mini",
+		stock:{"128GB":1,"256GB":1,"512GB":1}
+
 	},
 	{
 		imgUrl: iphone13Red,
 		name: "iPhone 13 mini 熱情紅",
 		color: "熱情紅",
 		type: "iPhone 13 mini",
+		stock:{"128GB":1,"256GB":1,"512GB":1}
+
 	},
 	{ imgUrl: iphone13Catalog, name: "iPhone 13" },
 	{
@@ -56,30 +65,40 @@ export const registerData = [
 		name: "iPhone 13 粉紅色",
 		color: "粉紅色",
 		type: "iPhone 13",
+		stock:{"128GB":1,"256GB":1,"512GB":1}
+
 	},
 	{
 		imgUrl: iphone13Blue,
 		name: "iPhone 13 藍色",
 		color: "藍色",
 		type: "iPhone 13",
+		stock:{"128GB":1,"256GB":1,"512GB":1}
+
 	},
 	{
 		imgUrl: iphone13Midnight,
 		name: "iPhone 13 午夜色",
 		color: "午夜色",
 		type: "iPhone 13",
+		stock:{"128GB":1,"256GB":1,"512GB":1}
+
 	},
 	{
 		imgUrl: iphone13Starlight,
 		name: "iPhone 13 星光色",
 		color: "星光色",
 		type: "iPhone 13",
+		stock:{"128GB":1,"256GB":1,"512GB":1}
+
 	},
 	{
 		imgUrl: iphone13Red,
 		name: "iPhone 13 熱情紅",
 		color: "熱情紅",
 		type: "iPhone 13",
+		stock:{"128GB":1,"256GB":1,"512GB":1}
+
 	},
 	{ imgUrl: iPhone13ProCatalog, name: "iPhone 13 Pro" },
 	{
@@ -87,24 +106,35 @@ export const registerData = [
 		name: "iPhone 13 Pro 天峰藍",
 		color: "天峰藍",
 		type: "iPhone 13 Pro",
+		stock:{"128GB":1,"256GB":1,"512GB":1,"1TB":0}
+
 	},
 	{
 		imgUrl: iphone13ProGreen,
 		name: "iPhone 13 Pro 湖水綠",
 		color: "湖水綠",
 		type: "iPhone 13 Pro",
+		stock:{"128GB":0,"256GB":0,"512GB":0,"1TB":0}
+
+
 	},
 	{
 		imgUrl: iphone13ProGold,
 		name: "iPhone 13 Pro 金色",
 		color: "金色",
 		type: "iPhone 13 Pro",
+		stock:{"128GB":1,"256GB":1,"512GB":1,"1TB":1}
+
+
 	},
 	{
 		imgUrl: iphone13ProGraphite,
 		name: "iPhone 13 Pro 石墨色",
 		color: "石墨色",
 		type: "iPhone 13 Pro",
+		stock:{"128GB":1,"256GB":1,"512GB":1,"1TB":1}
+
+
 	},
 	{ imgUrl: iPhone13ProCatalog, name: "iPhone 13 Pro Max" },
 	{
@@ -112,27 +142,39 @@ export const registerData = [
 		name: "iPhone 13 Pro Max 天峰藍",
 		color: "天峰藍",
 		type: "iPhone 13 Pro Max",
+		stock:{"128GB":1,"256GB":1,"512GB":1,"1TB":1}
+
+
 	},
 	{
 		imgUrl: iphone13ProGreen,
 		name: "iPhone 13 Pro Max 湖水綠",
 		color: "湖水綠",
 		type: "iPhone 13 Pro Max",
+		stock:{"128GB":1,"256GB":1,"512GB":1,"1TB":1}
+
+
 	},
 	{
 		imgUrl: iphone13ProGold,
 		name: "iPhone 13 Pro Max 金色",
 		color: "金色",
 		type: "iPhone 13 Pro Max",
+		stock:{"128GB":1,"256GB":1,"512GB":1,"1TB":1}
+
+
 	},
 	{
 		imgUrl: iphone13ProGraphite,
 		name: "iPhone 13 Pro Max 石墨色",
 		color: "石墨色",
 		type: "iPhone 13 Pro Max",
+		stock:{"128GB":1,"256GB":1,"512GB":1,"1TB":1}
+
+
 	},
 ];
-// add stock later
+
 export const iPhoneColorList = [
 	{ name: "粉紅色", color: "#FAE1DC" },
 	{ name: "藍色", color: "#3d6c85" },

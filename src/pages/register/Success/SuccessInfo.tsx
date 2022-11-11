@@ -11,7 +11,6 @@ function SuccessInfo({navBack,setNavBack}:any) {
 	//改進：any
 	const[eachItems,setEachItems]=useState<any>();
 	const[personalInfo,setPersonalInfo]=useState<any>();
-	// const[navBack,setNavBack]=useState<boolean>(false);
 
 
 	useEffect(()=>{
@@ -20,23 +19,12 @@ function SuccessInfo({navBack,setNavBack}:any) {
 		setStored(JSON.parse(stored as string));
 	},[]);
 
-	// useEffect(()=>{
-	// 	//如果未填寫基本資料即以輸入url進入本頁，顯示彈窗並引導回上一頁
-	// 	//分享Selection網頁給其他人時，如果localStorage沒有資料，也會導回上一頁
-	// 	if(stored===undefined || stored===null){
-	// 		setNavBack(true);
-	// 		return;
-	// 	}
-
-	// },[stored]);
 
 
 
 
 	useEffect(()=>{
-		//取得localStorage裡的個人及訂購資訊，以避免在reload之後資訊會不見
 		if(stored===undefined){
-			// setNavBack(true);
 			return;
 		}
 		if(stored===null){
