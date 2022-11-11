@@ -12,10 +12,11 @@ type RegLowerProps={
 
 function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 	const navigate = useNavigate();
-	const { regInfo, setRegInfo,proPostInfo, setProPostInfo } = useContext(UserContext);
+	const { regInfo, setRegInfo,proPostInfo, setProPostInfo,setShowPopUp,setShowReg } = useContext(UserContext);
 	const[validateCount,setValidateCount]=useState<number>(0);
-	const[showPopUp,setShowPopUp]=useState<boolean>(false);
-	const[showReg,setShowReg]=useState<boolean>(false);
+	const[stored,setStored]=useState<any>();
+
+
 
 	useEffect(()=>{
 		if(proPostInfo.checked===null){
@@ -24,8 +25,10 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		}
 		else if (buttonText==="選擇商品"){
 			setRegInfo(proPostInfo);
+			localStorage.setItem("storedRegInfo", JSON.stringify(proPostInfo));
 		}
 	},[validateCount]);
+
 
 
 
@@ -69,36 +72,39 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 				
 				//all validation pass, start navigate
 				if(nameValidation && phoneValidation && emailValidation && checkBoxValidation){
+					localStorage.setItem("storedRegInfo", JSON.stringify(regInfo));
 					navigate(navLink);
 					window.scroll({top: 0, left: 0, behavior: "smooth" }); 
-
-					
 				}
 			}
 			
 		}},[regInfo]);
 
+
+	useEffect(()=>{
+
+		if(stored===undefined || stored===null){
+			return;
+		}
+		if(buttonText==="送出"&&stored.post){
+			localStorage.setItem("storedRegInfo", JSON.stringify(stored));
+			navigator();
+		}
+	},[stored]);
+
+	useEffect(()=>{
+		const stored=localStorage.getItem("storedRegInfo");	
+		setStored(JSON.parse(stored as string));
+	},[buttonText]);
+
 	function postChecker(){
-		//檢查是否所有項目已經填寫再送出		
+		//檢查是否所有項目已經填寫再送出
 		if(regInfo.type.length===0 || regInfo.color.length===0|| regInfo.size.length===0){
 			setShowPopUp(true);
 		}else{
-			localStorage.setItem("storedRegInfo", JSON.stringify(regInfo));
-			setRegInfo({
-				name:"",
-				phone:"",
-				email:"",
-				checked:null,
-				type:"",
-				color:"",
-				size:"",
-				price:""
-			});
-			navigator();
+			setStored({...stored,type:regInfo.type,color:regInfo.color,
+				size:regInfo.size,price:regInfo.price,post:true});
 		}
-	}
-	function popUpSetter(){
-		setShowPopUp(false);
 	}
 
 	function navigator(){
@@ -110,12 +116,10 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		setShowReg(true);
 	}
 
-	function navToHome(){
-		navigate("/register");
-		setShowReg(false);
-		window.scroll({top: 0, left: 0, behavior: "smooth" }); 
-	}
-		
+
+
+
+
 
 	if(buttonText.length===0){
 		return<></>;
@@ -123,10 +127,6 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 
 	return ( 
 		<>
-			<div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
-				<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={popUpSetter}/></div>
-			<div className={`${showReg ? "fixed" : "hidden"} left-[30%]`}>
-				<PopUp title="已加入會員" content="點擊回到主頁" buttonText="回到主頁" buttonFunction={navToHome}/></div>
 			<section 
 				onClick={()=>{
 					if(buttonText!=="選擇商品" && buttonText!=="送出" && buttonText!=="加入會員"){
@@ -134,6 +134,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 					}else{
 						setValidateCount(validateCount+2);
 						buttonText==="送出"&&postChecker();
+						// buttonText==="選擇商品"&&postChecker("選擇商品");
 						buttonText==="加入會員"&&regMember();
 					}
 				}}

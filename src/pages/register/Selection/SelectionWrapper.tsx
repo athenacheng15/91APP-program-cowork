@@ -15,7 +15,7 @@ import {
 
 export default function Selection() {
 	const navigate = useNavigate();
-	const { regInfo,setRegInfo,xOffSet,setXOffSet } = useContext(UserContext);
+	const { regInfo,setRegInfo,xOffSet,setXOffSet,showPopUp,setShowPopUp,showReg,setShowReg } = useContext(UserContext);
 	const[image,setImage]=useState<string>(defaultPhoto);	
 	const[navBack,setNavBack]=useState<boolean>(false);
 	const [title,setTitle]=useState<string>("Apple iPhone 13");
@@ -23,6 +23,12 @@ export default function Selection() {
 	const [size,setSize]=useState<string>("");
 	const[carouselLength,setCarouselLength]=useState<number>();
 	const[lengthNow,setLengthNow]=useState<number>(5);
+	const[stored,setStored]=useState<any>();
+
+	useEffect(()=>{
+		const stored=localStorage.getItem("storedRegInfo");	
+		setStored(JSON.parse(stored as string));
+	},[]);
 
 	useEffect(()=>{
 		//取得Selection page輪播圖中的照片長度
@@ -52,10 +58,32 @@ export default function Selection() {
 
 	useEffect(()=>{
 		//如果未填寫基本資料即以輸入url進入本頁，顯示彈窗並引導回上一頁
-		if(regInfo.name.length===0 || regInfo.phone.length===0 || regInfo.email.length===0){
-			setNavBack(true);
+		//分享Selection網頁給其他人時，如果localStorage沒有資料，也會導回上一頁
+
+
+
+		if(stored===undefined){
+			// setRefreshCount(refreshCount+1);
+			// refreshCount<=2 ? setNavBack(true) :setNavBack(false);
+			// setNavBack(true);
+			return;
 		}
-	},[]);
+
+		if(stored===null){
+			setNavBack(true);
+			return;
+		}
+
+		if((regInfo.name.length===0 || regInfo.phone.length===0 || regInfo.email.length===0)&&
+		((stored.name.length===0 || stored.phone.length===0 || stored.email.length===0))
+		){
+			setNavBack(true);
+			
+		}else{
+			setNavBack(false);
+		}
+	},[regInfo,stored]);
+
 
 	function priceProcessor(){
 		const localPrice=priceChart.filter((item:any)=>item.type===regInfo.type && item.size === regInfo.size)[0].price;
@@ -105,6 +133,13 @@ export default function Selection() {
 		}
 	}
 
+	function popUpSetter(){
+		setShowPopUp(false);
+	}
+
+
+
+
 
 	return (
 		<section className="h-[max-content] bg-[#fafafa] flex flex-col md:items-center md:min-h-[979px]">
@@ -129,7 +164,17 @@ export default function Selection() {
 			<div className="block md:hidden">
 				<BlankDiv />
 			</div>
-			{navBack&&(<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>)}
+			{navBack&&(
+				<>
+					<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>
+				</>
+			)}
+			<div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
+				<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={popUpSetter}/>
+			</div>
+			{/* <div className={`${showReg ? "fixed" : "hidden"} left-[30%]`}>
+				<PopUp title="已加入會員" content="點擊回到主頁" buttonText="回到主頁" buttonFunction={navToHome}/></div> */}
+
 		</section>
 
 

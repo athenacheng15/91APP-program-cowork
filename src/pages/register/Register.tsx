@@ -51,7 +51,6 @@ export default function Register() {
 	});
 
 	const [proPostInfo, setProPostInfo] = useState({
-		//避免lower button的useEffect在onchange的時候被觸發
 		name:"",
 		phone:"",
 		email:"",
@@ -62,12 +61,13 @@ export default function Register() {
 	});
 
 	const[xOffSet,setXOffSet]=useState<number>(-22);
-
+	const[showPopUp,setShowPopUp]=useState<boolean>(false);
+	const[showReg,setShowReg]=useState<boolean>(false);
 	
 
 
 	return (
-		<UserContext.Provider value={{ regInfo, setRegInfo,proPostInfo,setProPostInfo,xOffSet,setXOffSet }}>
+		<UserContext.Provider value={{ regInfo, setRegInfo,proPostInfo,setProPostInfo,xOffSet,setXOffSet,showPopUp,setShowPopUp,showReg,setShowReg }}>
 			<section className="w-[100%]">
 				<RegHeader />
 				<Outlet />
