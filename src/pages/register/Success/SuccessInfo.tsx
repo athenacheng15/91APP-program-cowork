@@ -4,6 +4,8 @@ import { UserContext } from "../../../utili/useContext";
 import { useNavigate } from "react-router-dom";
 import BoldText from "./BoldText";
 import EachListItem from "./EachListItem";
+import {simplised} from "../../../utili/chineseChanger";
+
 
 function SuccessInfo({navBack,setNavBack}:any) {
 	const navigate = useNavigate();
@@ -11,6 +13,8 @@ function SuccessInfo({navBack,setNavBack}:any) {
 	//改進：any
 	const[eachItems,setEachItems]=useState<any>();
 	const[personalInfo,setPersonalInfo]=useState<any>();
+	const { simplified } = useContext(UserContext);
+
 
 
 	useEffect(()=>{
@@ -48,13 +52,19 @@ function SuccessInfo({navBack,setNavBack}:any) {
 				{id:1,left:"手機號碼",right:stored.phone,style:"normal"},
 				{id:1,left:"Email",right:stored.email,style:"normal"},
 			];
-			setEachItems(eachItems);
-			setPersonalInfo(personalInfo);
+			if(simplified){
+				const simplifedEachItems=eachItems.map((item:any)=>({...item,left:simplised(item.left)}));
+				const simplifedPersonalInfo=personalInfo.map((item:any)=>({...item,left:simplised(item.left)}));
+				setEachItems(simplifedEachItems);
+				setPersonalInfo(simplifedPersonalInfo);
+			}else{
+				setEachItems(eachItems);
+				setPersonalInfo(personalInfo);
+			}
 		}
 	},[stored]);
 
 
-	const { regInfo } = useContext(UserContext);
 	
 	function navigateBack(){
 		navigate("/register/form");
@@ -76,7 +86,7 @@ function SuccessInfo({navBack,setNavBack}:any) {
 			<section className="bg-[#f0f0f0] h-[max-content] w-[100%] flex flex-col items-center">
 				<div className="w-[91%] flex flex-col max-w-[850px]">
 					<div className="mt-[21px] mb-[9px]">
-						<BoldText content="登記資訊如下：" />
+						<BoldText content={simplified?simplised("登記資訊如下："):"登記資訊如下："} />
 					</div>
 					<div className="w-[100%] bg-[#D8D8D8] h-[1px] mb-[15px] md:mb-[30px]"></div>
 					<EachListItem info={eachItems}/>

@@ -5,13 +5,19 @@ import Carousell from "../../carousell/Carousell";
 import { registerCarousellData } from "../../../data/registerData";
 import arrowImg from "../../../img/register/CarousellArrow.png";
 import { Helmet } from "react-helmet";
+import { useContext } from "react";
+import { UserContext } from "../../../utili/useContext";
+import {simplised} from "../../../utili/chineseChanger";
+
 
 export default function Land() {
+	const { simplified } = useContext(UserContext);
+
 	return (
 		<>
 			<Helmet>
 				<meta charSet="utf-8" />
-				<title>iPhone搶購・首頁</title>
+				<title>{simplified?simplised("iPhone搶購・首頁"):"iPhone搶購・首頁"}</title>
 				<link rel="canonical" href="/App" />
 			</Helmet>
 			<section className="flex min-h-[1195px] flex-col items-center bg-[#fafafa] md:flex-row md:flex-wrap md:items-start">

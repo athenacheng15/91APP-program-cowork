@@ -8,6 +8,7 @@ import {registerData,priceChart} from "../../../data/registerData";
 import defaultPhoto from"../../../img/register/iPhone-images/pro-iphone-13-sky.png";
 import PopUp from "../../../components/PopUp";
 import BlankDiv from "../../../components/BlankDiv";
+import {simplised} from "../../../utili/chineseChanger";
 import {
 	ChevronRightIcon,
 	ChevronLeftIcon
@@ -18,7 +19,7 @@ import { Helmet } from "react-helmet";
 
 export default function Selection() {
 	const navigate = useNavigate();
-	const { regInfo,setRegInfo,xOffSet,setXOffSet,showPopUp,setShowPopUp,showReg,setShowReg } = useContext(UserContext);
+	const { regInfo,setRegInfo,xOffSet,setXOffSet,showPopUp,setShowPopUp,simplified } = useContext(UserContext);
 	const[image,setImage]=useState<string>(defaultPhoto);	
 	const[navBack,setNavBack]=useState<boolean>(false);
 	const [title,setTitle]=useState<string>("Apple iPhone 13");
@@ -143,16 +144,15 @@ export default function Selection() {
 
 
 
-
 	return (
 		<>
 			<Helmet>
 				<meta charSet="utf-8" />
-				<title>iPhone搶購・選擇商品</title>
+				<title>{simplified?simplised("iPhone搶購・選擇商品"):"iPhone搶購・選擇商品"}</title>
 				<link rel="canonical" href="/App" />
 			</Helmet>
 			<section className="h-[max-content] bg-[#fafafa] flex flex-col md:items-center md:min-h-[979px]">
-				<div className="hidden md:block my-[43px] text-[64px] font-[500]">選擇商品</div>
+				<div className="hidden md:block my-[43px] text-[64px] font-[500]">{simplified?simplised("選擇商品"):"選擇商品"}</div>
 				<div className="relative flex w-[100%] flex-col bg-white md:w-[75%] md:max-w-[1080px] md:flex-row">
 					<Gallery image={image}/>
 					<div 
@@ -175,15 +175,12 @@ export default function Selection() {
 				</div>
 				{navBack&&(
 					<>
-						<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>
+						<PopUp title={simplified?simplised("個人資料有誤"):"個人資料有誤"} content={simplified?simplised("個人資料尚未登記，請回上一頁填寫"):"個人資料尚未登記，請回上一頁填寫"} buttonText={simplified?simplised("回上一頁"):"回上一頁"} buttonFunction={navigateBack}/>
 					</>
 				)}
 				<div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
-					<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={popUpSetter}/>
+					<PopUp title={simplified?simplised("請選擇商品選項"):"請選擇商品選項"} content={simplified?simplised("送出資料錯誤，未選擇商品款式規格"):"送出資料錯誤，未選擇商品款式規格"} buttonText={simplified?simplised("確認"):"確認"} buttonFunction={popUpSetter}/>
 				</div>
-				{/* <div className={`${showReg ? "fixed" : "hidden"} left-[30%]`}>
-				<PopUp title="已加入會員" content="點擊回到主頁" buttonText="回到主頁" buttonFunction={navToHome}/></div> */}
-
 			</section>
 
 		</>

@@ -2,42 +2,56 @@ import { Outlet } from "react-router-dom";
 import RegLowerButton from "../../components/RegLowerButton";
 import logo from "../../img/register/91Logo.png";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {UserContext} from "../../utili/useContext";
 import RegHeader from "../../components/RegHeader";
+import {simplised} from "../../utili/chineseChanger";
+
 
 export default function Register() {
 	const location = useLocation();
 	const[buttonText,setButtonText]=useState<string>("");
 	const[navLink,setNavLink]=useState<string>("/");
+	const[xOffSet,setXOffSet]=useState<number>(-22);
+	const[showPopUp,setShowPopUp]=useState<boolean>(false);
+	const[showReg,setShowReg]=useState<boolean>(false);
+	const [simplified,setSimplified]=useState<boolean>(false);
+	const[clicksOnSimplified,setClicksOnSimplified]=useState<number>(0);
 	
 	useEffect(()=>{
 		switch(location.pathname){
 		case "/register":{
-			setButtonText("搶先登記");
+			let text="搶先登記";
+			text=simplified?simplised(text):text;
+			setButtonText(text);
 			setNavLink("/register/form");
 			break;
 		}
 		case "/register/form":{
-			setButtonText("選擇商品");
+			let text="選擇商品";
+			text=simplified?simplised(text):text;
+			setButtonText(text);
 			setNavLink("/register/selection");
 			break;
 		}
 		case "/register/selection":{
-			setButtonText("送出");
+			let text="送出";
+			text=simplified?simplised(text):text;
+			setButtonText(text);
 			setNavLink("/register/success");
 			break;
 		}
 		case "/register/success":{
-			setButtonText("加入會員");
-			setNavLink("/");
-			// 改進：因為實際上沒有加入會員功能，所以設定會到主頁
+			let text="加入會員";
+			text=simplified?simplised(text):text;
+			setButtonText(text);
+			setNavLink("/register");
 			break;
 		}
 		default:
 			return;
 		}
-	},[location]);
+	},[location,simplified]);
 
 	const [regInfo, setRegInfo] = useState({
 		name:"",
@@ -60,12 +74,10 @@ export default function Register() {
 		size:""
 	});
 
-	const[xOffSet,setXOffSet]=useState<number>(-22);
-	const[showPopUp,setShowPopUp]=useState<boolean>(false);
-	const[showReg,setShowReg]=useState<boolean>(false);
-	const [simplified,setSimplified]=useState<boolean>(false);
+	useEffect(()=>navigator.language==="zh-CN"? setSimplified(true):setSimplified(false),[]);
+
 	
-	useEffect(()=>localStorage.setItem("language", JSON.stringify(simplified)),[simplified]);
+	useEffect(()=>{clicksOnSimplified>0&&localStorage.setItem("language", JSON.stringify(simplified));},[clicksOnSimplified]);
 
 	useEffect(()=>{
 		const localSimplified=localStorage.getItem("language");
@@ -80,7 +92,7 @@ export default function Register() {
 	return (
 		<UserContext.Provider value={{ regInfo, setRegInfo,proPostInfo,setProPostInfo,xOffSet,setXOffSet,showPopUp,setShowPopUp,showReg,setShowReg,simplified,setSimplified }}>
 			<section className="w-[100%]">
-				<RegHeader />
+				<RegHeader clicksOnSimplified={clicksOnSimplified} setClicksOnSimplified={setClicksOnSimplified}/>
 				<Outlet />
 				<RegLowerButton buttonText={buttonText} navLink={navLink}/>
 			</section>

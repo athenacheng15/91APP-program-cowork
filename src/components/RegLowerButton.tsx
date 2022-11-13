@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../utili/useContext";
 import {isChinese} from "../utili/isChinese";
-import PopUp from "./PopUp";
+import {simplised} from "../utili/chineseChanger";
+
 
 type RegLowerProps={
 	buttonText:string;
@@ -12,7 +13,7 @@ type RegLowerProps={
 
 function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 	const navigate = useNavigate();
-	const { regInfo, setRegInfo,proPostInfo, setProPostInfo,setShowPopUp,setShowReg } = useContext(UserContext);
+	const { regInfo, setRegInfo,proPostInfo, setProPostInfo,setShowPopUp,setShowReg,simplified } = useContext(UserContext);
 	const[validateCount,setValidateCount]=useState<number>(0);
 	const[stored,setStored]=useState<any>();
 
@@ -23,7 +24,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 			setProPostInfo({...proPostInfo,checked:false});
 			setRegInfo(proPostInfo);
 		}
-		else if (buttonText==="選擇商品"){
+		else if (buttonText==="選擇商品"||buttonText==="选择商品"){
 			setRegInfo(proPostInfo);
 			localStorage.setItem("storedRegInfo", JSON.stringify(proPostInfo));
 		}
@@ -39,7 +40,7 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		//需要重複的code的原因是每一個選項都需要獨特的判定，之後可以想想如何改善
 		//而且會有按了選擇商品之後一直呼叫的問題
 		if(validateCount>0 && validateCount%2===0){
-			if(buttonText==="選擇商品"){
+			if(buttonText==="選擇商品"||buttonText==="选择商品"){
 				let nameValidation=false;
 				let phoneValidation=false;
 				let emailValidation=false;
@@ -82,7 +83,6 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 
 
 	useEffect(()=>{
-
 		if(stored===undefined || stored===null){
 			return;
 		}
@@ -129,13 +129,12 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 		<>
 			<section 
 				onClick={()=>{
-					if(buttonText!=="選擇商品" && buttonText!=="送出" && buttonText!=="加入會員"){
+					if(buttonText!=="選擇商品"&&buttonText!=="选择商品" && buttonText!=="送出" && buttonText!=="加入會員" && buttonText!=="加入会员"){
 						navigator();
 					}else{
 						setValidateCount(validateCount+2);
 						buttonText==="送出"&&postChecker();
-						// buttonText==="選擇商品"&&postChecker("選擇商品");
-						buttonText==="加入會員"&&regMember();
+						(buttonText==="加入會員"||buttonText==="加入会员")&&regMember();
 					}
 				}}
 				className="fixed bottom-0 mt-auto bg-white h-[max-content] flex w-[100%] items-center justify-center flex-col">
@@ -143,13 +142,13 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 
 				{buttonText==="送出"&& regInfo.size.length!==0&&(
 					<div className="flex items-center justify-between mt-[5px] w-[91%]">
-						<span className="text-[#FF5353] text-[14px]">一經送出商品選項，不得修改</span>
+						<span className="text-[#FF5353] text-[14px]">{simplified?simplised("一經送出商品選項，不得修改"):"一經送出商品選項，不得修改"}</span>
 						<span className="text-[#FF5353] text-[14px]">NT${regInfo.price}</span>
 					</div>
 				)}
 				{buttonText==="加入會員"&&(
 					<div className="flex items-center justify-center mt-[6px] w-[91%] md:mt-[10px]">
-						<span className="text-[#FF5353] text-[14px] md:text-[16px]">立刻加入會員，開賣通知不漏接！</span>
+						<span className="text-[#FF5353] text-[14px] md:text-[16px]">{simplified?simplised("立刻加入會員，開賣通知不漏接！"):"立刻加入會員，開賣通知不漏接！"}</span>
 					</div>
 				)}
 				<div className={`${regInfo.price===undefined&& "mt-[15px]"} mt-[15px] cursor-pointer mb-[10px] w-[91%] bg-[#ff5455] h-[40px] rounded-md flex items-center justify-center`}>
