@@ -111,7 +111,7 @@ export default function Selection() {
 	},[regInfo]);
 
 	function navigateBack(){
-		navigate("/register/reg");
+		navigate("/register/form");
 		window.scroll({top: 0, left: 0, behavior: "smooth" }); 
 	}
 

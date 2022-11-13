@@ -57,7 +57,7 @@ function SuccessInfo({navBack,setNavBack}:any) {
 	const { regInfo } = useContext(UserContext);
 	
 	function navigateBack(){
-		navigate("/register/reg");
+		navigate("/register/form");
 		window.scroll({top: 0, left: 0, behavior: "smooth" }); 
 	}
 	

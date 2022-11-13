@@ -15,10 +15,10 @@ export default function Register() {
 		switch(location.pathname){
 		case "/register":{
 			setButtonText("搶先登記");
-			setNavLink("/register/reg");
+			setNavLink("/register/form");
 			break;
 		}
-		case "/register/reg":{
+		case "/register/form":{
 			setButtonText("選擇商品");
 			setNavLink("/register/selection");
 			break;

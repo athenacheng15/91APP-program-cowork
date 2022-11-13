@@ -14,7 +14,7 @@ export default function SuccessWrapper() {
 	const[navBack,setNavBack]=useState<boolean>(false);
 
 	function navigateBack(){
-		navigate("/register/reg");
+		navigate("/register/form");
 		window.scroll({top: 0, left: 0, behavior: "smooth" }); 
 	}
 
