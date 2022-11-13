@@ -12,6 +12,9 @@ import {
 	ChevronRightIcon,
 	ChevronLeftIcon
 } from "@primer/octicons-react";
+import { Helmet } from "react-helmet";
+
+
 
 export default function Selection() {
 	const navigate = useNavigate();
@@ -142,41 +145,47 @@ export default function Selection() {
 
 
 	return (
-		<section className="h-[max-content] bg-[#fafafa] flex flex-col md:items-center md:min-h-[979px]">
-			<div className="hidden md:block my-[43px] text-[64px] font-[500]">選擇商品</div>
-			<div className="relative flex w-[100%] flex-col bg-white md:w-[75%] md:max-w-[1080px] md:flex-row">
-				<Gallery image={image}/>
-				<div 
-					onClick={()=>backwardHandler()}
-					className={`${lengthNow===5? "hidden" :"xl:block"} absolute bottom-[15%] left-[40px] hidden`}>
-					<ChevronLeftIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
+		<>
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>iPhone搶購・選擇商品</title>
+				<link rel="canonical" href="/App" />
+			</Helmet>
+			<section className="h-[max-content] bg-[#fafafa] flex flex-col md:items-center md:min-h-[979px]">
+				<div className="hidden md:block my-[43px] text-[64px] font-[500]">選擇商品</div>
+				<div className="relative flex w-[100%] flex-col bg-white md:w-[75%] md:max-w-[1080px] md:flex-row">
+					<Gallery image={image}/>
+					<div 
+						onClick={()=>backwardHandler()}
+						className={`${lengthNow===5? "hidden" :"xl:block"} absolute bottom-[15%] left-[40px] hidden`}>
+						<ChevronLeftIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
+					</div>
+					<div 
+						onClick={()=>forwardHandler()}
+						className={`${lengthNow===carouselLength? "hidden":"xl:block"} absolute bottom-[15%] left-[507px] hidden`}>
+						<ChevronRightIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
+					</div>
+					<div className="flex flex-col max-w-[100%] md:max-w-[376px] ml-0 md:ml-[89px]">
+						<TitlePrice title={title} price={price} />
+						<Selector />
+					</div>
 				</div>
-				<div 
-					onClick={()=>forwardHandler()}
-					className={`${lengthNow===carouselLength? "hidden":"xl:block"} absolute bottom-[15%] left-[507px] hidden`}>
-					<ChevronRightIcon size={24} fill="#8e8e8e" className="mr-[20px] self-center cursor-pointer" />
+				<div className="block md:hidden">
+					<BlankDiv />
 				</div>
-				<div className="flex flex-col max-w-[100%] md:max-w-[376px] ml-0 md:ml-[89px]">
-					<TitlePrice title={title} price={price} />
-					<Selector />
+				{navBack&&(
+					<>
+						<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>
+					</>
+				)}
+				<div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
+					<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={popUpSetter}/>
 				</div>
-			</div>
-			<div className="block md:hidden">
-				<BlankDiv />
-			</div>
-			{navBack&&(
-				<>
-					<PopUp title="個人資料有誤" content="個人資料尚未登記，請回上一頁填寫" buttonText="回上一頁" buttonFunction={navigateBack}/>
-				</>
-			)}
-			<div className={`${showPopUp ? "fixed" : "hidden"} left-[30%]`}>
-				<PopUp title="請選擇商品選項" content="送出資料錯誤，未選擇商品款式規格" buttonText="確認" buttonFunction={popUpSetter}/>
-			</div>
-			{/* <div className={`${showReg ? "fixed" : "hidden"} left-[30%]`}>
+				{/* <div className={`${showReg ? "fixed" : "hidden"} left-[30%]`}>
 				<PopUp title="已加入會員" content="點擊回到主頁" buttonText="回到主頁" buttonFunction={navToHome}/></div> */}
 
-		</section>
+			</section>
 
-
+		</>
 	);
 }

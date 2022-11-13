@@ -157,7 +157,6 @@ function RegLowerButton({buttonText,navLink}:RegLowerProps) {
 				</div>
 			</section> 
 		</>);
-	// 改進：sticky bottom
 }
 
 export default RegLowerButton;

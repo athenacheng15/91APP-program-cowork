@@ -6,6 +6,7 @@ import SuccessInfo from "./SuccessInfo";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../utili/useContext";
+import { Helmet } from "react-helmet";
 
 
 export default function SuccessWrapper() {
@@ -27,8 +28,12 @@ export default function SuccessWrapper() {
 
 
 	return (
-		// <section className="w-[100%] flex flex-col h-[max-content] md:bg-[#eeeeee]">
 		<>
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>iPhone搶購・成功登記</title>
+				<link rel="canonical" href="/App" />
+			</Helmet>
 			{navBack&&(
 				<>
 					<PopUp title="個人資料有誤" content="個人資料尚未登記，請回到登記頁填寫" buttonText="回登記頁" buttonFunction={navigateBack}/>
