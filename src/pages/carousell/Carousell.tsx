@@ -32,7 +32,7 @@ export default function Carousell({
 	const timerRef = useRef<NodeJS.Timeout>();
 	const containerRef = useRef<HTMLDivElement>(null);
 	const containerWidthRef = useRef(0);
-	const [offsetX, setOffsetX, offsetXref] = useSwiperRef(0);
+	const [offsetX, setOffsetX, offsetXRef] = useSwiperRef(0);
 	const currentOffsetXRef = useRef(0);
 	const startXRef = useRef(0);
 	const minOffsetXRef = useRef(0);
@@ -74,7 +74,7 @@ export default function Carousell({
 
 	function handleTouchEnd() {
 		const containerWith = getRefValue(containerWidthRef);
-		let newOffsetX = getRefValue(offsetXref);
+		let newOffsetX = getRefValue(offsetXRef);
 
 		const diff = getRefValue(currentOffsetXRef) - newOffsetX;
 		if (Math.abs(diff) > MIN_SWIPE_REQUIRE) {
@@ -101,7 +101,7 @@ export default function Carousell({
 		e: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>
 	) {
 		setIsSwiping(true);
-		currentOffsetXRef.current = getRefValue(offsetXref);
+		currentOffsetXRef.current = getRefValue(offsetXRef);
 		startXRef.current = getTouchEventData(e).clientX;
 
 		const containerElement = getRefValue(containerRef);
