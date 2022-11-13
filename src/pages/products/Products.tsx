@@ -2,9 +2,17 @@ import Header from "./Header";
 import Footer from "./Footer";
 import SideBar from "./SideBar";
 import Content from "./Content";
+import { Helmet } from "react-helmet";
+
+
 export default function Product() {
 	return (
 		<>
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Sasa Official Shop</title>
+				<link rel="canonical" href="/App" />
+			</Helmet>
 			<Header />
 			<div className="w-[1180px] m-auto">
 				<div className="flex h-12 items-center">

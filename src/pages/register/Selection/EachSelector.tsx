@@ -23,7 +23,7 @@ function EachSelector({info,localType}:EachSelectorProps) {
 		}
 	},[regInfo]);
 
-	useEffect(()=>console.log(noStock),[noStock]);
+
 
 
 	useEffect(()=>{
@@ -41,6 +41,11 @@ function EachSelector({info,localType}:EachSelectorProps) {
 	,[regInfo]);
 
 
+	if(info===undefined){
+		return (<>
+		Loading
+		</>);
+	}
 
 	return (
 		<>

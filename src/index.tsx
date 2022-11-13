@@ -22,8 +22,7 @@ root.render(
 				<Route path="products" element={<Product />} />
 				<Route path="register" element={<Register />}>
 					<Route index element={<LandingWrapper />} />
-					{/* default page when path is /register */}
-					<Route path="reg" element={<Reg />} />
+					<Route path="form" element={<Reg />} />
 					<Route path="selection" element={<SelectionWrapper />} />
 					<Route path="success" element={<SuccessWrapper />} />
 				</Route>
