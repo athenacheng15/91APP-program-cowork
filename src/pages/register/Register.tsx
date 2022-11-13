@@ -63,11 +63,22 @@ export default function Register() {
 	const[xOffSet,setXOffSet]=useState<number>(-22);
 	const[showPopUp,setShowPopUp]=useState<boolean>(false);
 	const[showReg,setShowReg]=useState<boolean>(false);
+	const [simplified,setSimplified]=useState<boolean>(false);
 	
+	useEffect(()=>localStorage.setItem("language", JSON.stringify(simplified)),[simplified]);
+
+	useEffect(()=>{
+		const localSimplified=localStorage.getItem("language");
+		if(localSimplified!==null){
+			localSimplified==="true"?setSimplified(true):setSimplified(false);
+		}else{
+			localStorage.setItem("language", JSON.stringify(simplified));
+		}
+	},[]);
 
 
 	return (
-		<UserContext.Provider value={{ regInfo, setRegInfo,proPostInfo,setProPostInfo,xOffSet,setXOffSet,showPopUp,setShowPopUp,showReg,setShowReg }}>
+		<UserContext.Provider value={{ regInfo, setRegInfo,proPostInfo,setProPostInfo,xOffSet,setXOffSet,showPopUp,setShowPopUp,showReg,setShowReg,simplified,setSimplified }}>
 			<section className="w-[100%]">
 				<RegHeader />
 				<Outlet />
